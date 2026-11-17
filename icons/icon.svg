@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#56692b"/>
+  <circle cx="256" cy="256" r="200" fill="#62783a"/>
+  <g transform="rotate(28 256 256)">
+    <rect x="249" y="62" width="14" height="390" rx="7" fill="#f3e6c4"/>
+    <!-- aceituna abajo -->
+    <ellipse cx="256" cy="392" rx="40" ry="46" fill="#8fa83a"/>
+    <ellipse cx="244" cy="378" rx="10" ry="14" fill="#c4d873" opacity=".8"/>
+    <!-- piparra plegada -->
+    <path d="M214 292 C250 276 300 282 304 300 C308 318 254 322 222 334 C200 344 236 362 300 350"
+          stroke="#8f8424" stroke-width="34" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M214 292 C250 276 300 282 304 300 C308 318 254 322 222 334 C200 344 236 362 300 350"
+          stroke="#cdbf45" stroke-width="26" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M226 290 C252 282 284 284 294 294" stroke="#ece08a" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <!-- anchoa en S -->
+    <path d="M204 222 C232 196 280 252 308 226" stroke="#6e4f33" stroke-width="34" fill="none" stroke-linecap="round"/>
+    <path d="M204 222 C232 196 280 252 308 226" stroke="#9a7650" stroke-width="24" fill="none" stroke-linecap="round"/>
+    <path d="M210 216 C234 198 276 244 302 222" stroke="#e4d6c0" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <!-- aceituna arriba con pimiento -->
+    <ellipse cx="256" cy="140" rx="48" ry="54" fill="#9bb33f"/>
+    <ellipse cx="241" cy="122" rx="12" ry="17" fill="#c9dc7c" opacity=".85"/>
+    <circle cx="256" cy="140" r="11" fill="#c0442f"/>
+    <path d="M249 62 L256 40 L263 62 Z" fill="#f3e6c4"/>
+  </g>
+</svg>
