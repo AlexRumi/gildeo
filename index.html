@@ -253,7 +253,12 @@ a.btn{text-decoration:none;text-align:center}
         <button class="btn" id="bkSave">Hacer copia</button>
         <button class="btn ghost" id="bkLoad">Restaurar copia</button>
       </div>
-      <input type="file" id="bkFile" accept=".json,application/json" class="hide">
+      <input type="file" id="bkFile" class="hide">
+      <button class="link" id="bkPasteBtn" style="display:block;margin-top:12px">¿No encuentras el archivo? Pega el texto de la copia</button>
+      <div id="bkPaste" class="hide" style="margin-top:10px">
+        <textarea id="bkPasteTxt" class="copybox" style="margin-top:0" placeholder="Pega aquí el contenido de la copia"></textarea>
+        <div class="actions"><button class="btn" id="bkPasteGo">Revisar copia</button></div>
+      </div>
       <div id="bkConfirm"></div>
       <textarea class="copybox hide" id="bkBox" readonly></textarea>
     </div>
@@ -962,17 +967,22 @@ $("bGo").onclick = async ()=>{
 $("bkLoad").onclick=()=>$("bkFile").click();
 $("bkFile").addEventListener("change", async e=>{
   const f=e.target.files[0]; e.target.value=""; if(!f) return;
-  let data; try{ data=JSON.parse(await f.text()); }catch(err){ return toast("Ese archivo no es una copia válida"); }
+  procesarCopia(await f.text());
+});
+$("bkPasteBtn").onclick=()=>{ $("bkPaste").classList.toggle("hide"); };
+$("bkPasteGo").onclick=()=>procesarCopia($("bkPasteTxt").value);
+function procesarCopia(txt){
+  let data; try{ data=JSON.parse(String(txt).trim()); }catch(err){ return toast("Eso no es una copia válida"); }
   if(!data||data.app!=="control-gildas"||!Array.isArray(data.jornadas)) return toast("Ese archivo no es una copia de esta app");
   data.jornadas=data.jornadas.filter(j=>j&&typeof j.id==="string"&&/^\d{4}-\d{2}-\d{2}$/.test(j.fecha)&&typeof j.minutos==="number");
   const box=$("bkConfirm");
   box.innerHTML=`<div class="banner" style="margin-top:12px"><div class="tx"><b>¿Restaurar esta copia?</b>Del ${new Date(data.fecha).toLocaleDateString("es-ES")}: ${data.jornadas.length} jornadas. Se suman a lo que ya tienes, sin borrar nada.</div><button class="btn" id="bkGo">Restaurar</button></div>`;
   $("bkGo").onclick=async()=>{
     $("bkGo").disabled=true;
-    try{ await store.restaurar(data,(n,t)=>{ $("bkGo").textContent=`${n}/${t}`; }); box.innerHTML=""; toast("Copia restaurada ✓"); }
+    try{ await store.restaurar(data,(n,t)=>{ $("bkGo").textContent=`${n}/${t}`; }); box.innerHTML=""; $("bkPasteTxt").value=""; $("bkPaste").classList.add("hide"); toast("Copia restaurada ✓"); }
     catch(err){ failMsg(err); $("bkGo").disabled=false; $("bkGo").textContent="Reintentar"; }
   };
-});
+}
 
 $("ovClose").onclick = ()=> $("ov").classList.add("hide");
 $("ov").addEventListener("click", e=>{ if(e.target.id==="ov") $("ov").classList.add("hide"); });
