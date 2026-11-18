@@ -56,6 +56,15 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--olive-soft);bord
 .timer{text-align:center}
 .timer .clock{font-family:Fraunces,serif;font-size:44px;margin:6px 0 2px;color:var(--olive)}
 .timer .since{color:var(--muted);font-size:14px;margin-bottom:14px}
+.tbtns{display:grid;grid-template-columns:1fr 1.4fr;gap:8px}
+.tbtns .btn{padding:15px 8px;font-size:16px}
+.paused .clock{color:var(--muted)}
+.pbadge{display:inline-block;background:#f0eadc;color:var(--muted);font-size:12px;font-weight:700;padding:3px 9px;border-radius:99px;margin-bottom:12px}
+.warn{background:var(--pepper-soft);border:1px solid #ecc2b8;border-radius:14px;padding:12px;margin:0 0 14px;text-align:left}
+.warn b{display:block;color:var(--pepper);margin-bottom:4px}
+.warn .sub{margin-bottom:10px}
+.warn .wrow{display:flex;gap:8px}
+.warn .wrow input{flex:1}
 .link{background:none;border:0;color:var(--muted);text-decoration:underline;font:500 13px "DM Sans";cursor:pointer;margin-top:10px}
 .entry{border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:8px;cursor:pointer;background:#fff}
 .entry:hover{border-color:#cfc6b0}
@@ -107,7 +116,10 @@ th{font-size:12px;color:var(--muted);font-weight:600;border-top:0}
 td.n,th.n{text-align:right;white-space:nowrap}
 tr.tot td{font-weight:700;border-top:2px solid var(--ink)}
 .tipo{display:flex;gap:8px;margin-bottom:8px}
-.tipo input{flex:1}
+.tipo input{flex:1;min-width:0}
+.tipo .mv{display:flex;flex-direction:column;gap:2px}
+.tipo .mv button{border:0;background:#f0eadc;border-radius:7px;width:34px;height:20px;font-size:11px;color:var(--muted);cursor:pointer;line-height:1}
+.tipo .mv button:disabled{opacity:.3;cursor:default}
 .toast{white-space:nowrap;max-width:94vw;overflow:hidden;text-overflow:ellipsis;position:fixed;left:50%;bottom:20px;transform:translateX(-50%) translateY(80px);background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;font-weight:600;font-size:14px;transition:transform .25s;z-index:20}
 .toast.show{transform:translateX(-50%) translateY(0)}
 .hide{display:none!important}
@@ -186,6 +198,7 @@ a.btn{text-decoration:none;text-align:center}
           <div><label for="fIni">Empecé a las</label><input type="time" id="fIni"></div>
           <div><label for="fFin">Terminé a las</label><input type="time" id="fFin"></div>
         </div>
+        <div style="margin-top:10px;max-width:50%"><label for="fPausa">Descansos (min)</label><input type="number" id="fPausa" min="0" inputmode="numeric" placeholder="0"></div>
       </div>
       <div id="rowDur" class="hide">
         <div class="row">
@@ -378,7 +391,7 @@ const store = {
     if(data.tipos&&data.tipos.length) await retry(()=>db.doc("config/tipos").set({lista:data.tipos}));
   },
   async setActivo(a){
-    if(mode==="db"){ await retry(()=>db.doc("config/activo").set({inicio:a?a.inicio:null})); }
+    if(mode==="db"){ await retry(()=>db.doc("config/activo").set(a?{...a}:{inicio:null})); }
     else { S.activo=a; saveLocal(); renderTimer(); }
   }
 };
@@ -392,7 +405,7 @@ function setStatus(){
 
 async function initStore(){
   let ns = null;
-  if(!ns){ mode="local"; loadLocal(); setStatus(); renderAll(); refreshSelects(); renderBanner(); listo("j"); listo("a"); return; }
+  if(!ns){ mode="local"; loadLocal(); setStatus(); renderTimer(); renderAll(); refreshSelects(); renderBanner(); listo("j"); listo("a"); return; }
   db = ns; mode="db"; setStatus();
   const slow = setTimeout(()=>{ $("status").textContent="Conectando…"; }, 10000);
   db.collection("jornadas").onSnapshot(snap=>{
@@ -436,43 +449,87 @@ function showView(v){
 }
 
 /* ---------- cronómetro ---------- */
+const OLVIDO_H = 10; // horas a partir de las que avisa
+function pausaMs(a, hasta){ // ms de descanso entre el inicio y "hasta"
+  const H=hasta.getTime(); let t=0;
+  (a.pausas||[]).forEach(p=>{ const x=new Date(p.ini).getTime(), y=Math.min(new Date(p.fin).getTime(),H); if(y>x) t+=y-x; });
+  if(a.pausadoDesde){ const x=new Date(a.pausadoDesde).getTime(); if(H>x) t+=H-x; }
+  return t;
+}
+function trabajadoMs(a, hasta){ return Math.max(0, hasta - new Date(a.inicio) - pausaMs(a, hasta)); }
+function olvidado(){ return S.activo && (Date.now()-new Date(S.activo.inicio)) > OLVIDO_H*3600000; }
+let avisoMostrado=false;
+
+function terminarEn(end){
+  const a=S.activo, ini=new Date(a.inicio);
+  const pz=Math.round(pausaMs(a,end)/60000);
+  resetForm();
+  $("fFecha").value = ymd(ini);
+  setModo("horas");
+  $("fIni").value = hhmm(ini);
+  $("fFin").value = hhmm(end);
+  $("fPausa").value = pz || "";
+  updateCalc();
+  store.setActivo(null).catch(failMsg);
+  $("formCard").scrollIntoView({behavior:"smooth"});
+  toast("Apunta las gildas y guarda");
+}
+
 function renderTimer(){
   const c=$("timerCard");
+  avisoMostrado = olvidado();
   if(!S.activo){
+    c.classList.remove("paused");
     c.innerHTML = `<div class="sub" style="margin-bottom:10px">¿Te pones ahora con las gildas?</div>
       <button class="btn big" id="tStart">▶ Empezar ahora</button>
       <div class="sub" style="margin-top:10px">Al terminar, la app calcula el tiempo sola.</div>`;
-    $("tStart").onclick = ()=> store.setActivo({inicio:new Date().toISOString()}).then(()=>toast("¡A darle! Cronómetro en marcha")).catch(failMsg);
-  } else {
-    const ini=new Date(S.activo.inicio);
-    c.innerHTML = `<div class="sub">Trabajando desde las <b>${hhmm(ini)}</b>${ymd(ini)!==today()?` del ${ini.getDate()}/${ini.getMonth()+1}`:""}</div>
-      <div class="clock" id="tClock"></div>
-      <div class="since">tiempo transcurrido</div>
-      <button class="btn big red" id="tStop">■ Terminar</button>
-      <button class="link" id="tCancel">Descartar cronómetro</button>`;
-    tick();
-    $("tStop").onclick = ()=>{
-      const end=new Date();
-      resetForm();
-      $("fFecha").value = ymd(ini);
-      setModo("horas");
-      $("fIni").value = hhmm(ini);
-      $("fFin").value = hhmm(end);
-      updateCalc();
-      store.setActivo(null).catch(failMsg);
-      $("formCard").scrollIntoView({behavior:"smooth"});
-      toast("Apunta las gildas y guarda");
-    };
-    let armed=false;
-    $("tCancel").onclick = e=>{
-      if(!armed){ armed=true; e.target.textContent="¿Seguro? Toca otra vez para descartar"; return; }
-      store.setActivo(null).catch(failMsg);
-    };
+    $("tStart").onclick = ()=> store.setActivo({inicio:new Date().toISOString(), pausas:[], pausadoDesde:null}).then(()=>toast("¡A darle! Cronómetro en marcha")).catch(failMsg);
+    return;
   }
+  const a=S.activo, ini=new Date(a.inicio), enPausa=!!a.pausadoDesde;
+  const pzMin=Math.round(pausaMs(a,new Date())/60000);
+  c.classList.toggle("paused", enPausa);
+  const horasFuera=Math.floor((Date.now()-ini)/3600000);
+  c.innerHTML = `
+    ${avisoMostrado?`<div class="warn"><b>⚠️ ¿Se te olvidó pararlo?</b>
+      <div class="sub">El cronómetro lleva más de ${horasFuera} horas en marcha. Dime a qué hora terminaste de verdad:</div>
+      <div class="wrow"><input type="time" id="tOlvFin"><button class="btn red" id="tOlvGo">Terminar</button></div></div>`:""}
+    ${enPausa?`<span class="pbadge">⏸ EN PAUSA desde las ${hhmm(new Date(a.pausadoDesde))}</span>`:""}
+    <div class="sub">Trabajando desde las <b>${hhmm(ini)}</b>${ymd(ini)!==today()?` del ${ini.getDate()}/${ini.getMonth()+1}`:""}</div>
+    <div class="clock" id="tClock"></div>
+    <div class="since">${pzMin?`trabajado · ${pzMin<60?pzMin+"min":fmt(pzMin)} de descanso`:"tiempo trabajado"}</div>
+    <div class="tbtns">
+      <button class="btn light" id="tPause">${enPausa?"▶ Seguir":"⏸ Pausar"}</button>
+      <button class="btn red" id="tStop">■ Terminar</button>
+    </div>
+    <button class="link" id="tCancel">Descartar cronómetro</button>`;
+  tick();
+  $("tPause").onclick = ()=>{
+    const now=new Date().toISOString();
+    const n = enPausa
+      ? {...a, pausas:[...(a.pausas||[]), {ini:a.pausadoDesde, fin:now}], pausadoDesde:null}
+      : {...a, pausadoDesde:now};
+    store.setActivo(n).then(()=>toast(enPausa?"Seguimos 💪":"Pausa. El tiempo no cuenta")).catch(failMsg);
+  };
+  $("tStop").onclick = ()=> terminarEn(new Date());
+  if(avisoMostrado) $("tOlvGo").onclick = ()=>{
+    const v=$("tOlvFin").value; if(!v) return toast("Pon la hora a la que terminaste");
+    const [h,m]=v.split(":").map(Number);
+    const end=new Date(ini); end.setHours(h,m,0,0);
+    if(end<=ini) end.setDate(end.getDate()+1);
+    if(end>new Date()) return toast("Esa hora aún no ha llegado");
+    terminarEn(end);
+  };
+  let armed=false;
+  $("tCancel").onclick = e=>{
+    if(!armed){ armed=true; e.target.textContent="¿Seguro? Toca otra vez para descartar"; return; }
+    store.setActivo(null).catch(failMsg);
+  };
 }
 function tick(){
+  if(S.activo && olvidado()!==avisoMostrado) return renderTimer();
   const el=$("tClock"); if(!el||!S.activo) return;
-  const s=Math.max(0,Math.floor((Date.now()-new Date(S.activo.inicio))/1000));
+  const s=Math.floor(trabajadoMs(S.activo,new Date())/1000);
   el.textContent = `${Math.floor(s/3600)}:${pad(Math.floor(s%3600/60))}:${pad(s%60)}`;
 }
 setInterval(tick,1000);
@@ -494,17 +551,17 @@ function formMinutes(){
     const a=toMin($("fIni").value), b=toMin($("fFin").value);
     if(a==null||b==null) return null;
     let d=b-a; if(d<0) d+=1440; // por si pasas de medianoche
-    return d;
+    return d - (Number($("fPausa").value)||0);
   }
   const h=Number($("fH").value)||0, m=Number($("fM").value)||0;
   if(!$("fH").value && !$("fM").value) return null;
   return h*60+m;
 }
 function updateCalc(){
-  const m=formMinutes();
-  $("fCalc").textContent = m!=null && m>0 ? `= ${fmt(m)}` : "";
+  const m=formMinutes(), pz=Number($("fPausa").value)||0;
+  $("fCalc").textContent = m!=null && m>0 ? `= ${fmt(m)}${F.modo==="horas"&&pz?` (quitando ${pz}min de descanso)`:""}` : (m!=null&&m<=0?"Los descansos superan el tiempo":"");
 }
-["fIni","fFin","fH","fM"].forEach(id=>$(id).addEventListener("input",updateCalc));
+["fIni","fFin","fPausa","fH","fM"].forEach(id=>$(id).addEventListener("input",updateCalc));
 
 function optionsFor(sel){
   const list = S.tipos.slice();
@@ -532,7 +589,7 @@ $("gAdd").onclick = ()=>{ F.gildas.push({tipo:"",cubos:""}); renderGRows(); };
 
 function resetForm(){
   F = { id:null, modo:F.modo, gildas:[{tipo:"",cubos:""}] };
-  $("fFecha").value=today(); $("fIni").value=""; $("fFin").value=""; $("fH").value=""; $("fM").value=""; $("fNota").value="";
+  $("fFecha").value=today(); $("fIni").value=""; $("fFin").value=""; $("fPausa").value=""; $("fH").value=""; $("fM").value=""; $("fNota").value="";
   $("fErr").textContent=""; $("formTitle").textContent="Añadir jornada"; $("fSave").textContent="Guardar jornada";
   $("fCancel").classList.add("hide"); $("fDel").classList.add("hide"); $("fDel").textContent="Eliminar"; delArmed=false;
   renderGRows(); updateCalc();
@@ -544,7 +601,7 @@ function editJornada(id){
   showView("registrar");
   F = { id:j.id, modo:j.inicio?"horas":"dur", gildas:(j.gildas&&j.gildas.length? j.gildas.map(g=>({tipo:g.tipo,cubos:g.cubos??""})) : [{tipo:"",cubos:""}]) };
   $("fFecha").value=j.fecha;
-  $("fIni").value=j.inicio||""; $("fFin").value=j.fin||"";
+  $("fIni").value=j.inicio||""; $("fFin").value=j.fin||""; $("fPausa").value=j.pausa||"";
   $("fH").value=Math.floor(j.minutos/60); $("fM").value=j.minutos%60;
   $("fNota").value=j.nota||"";
   setModo(F.modo);
@@ -563,6 +620,7 @@ $("fSave").onclick = async ()=>{
   const gildas = F.gildas.filter(g=>g.tipo).map(g=>({tipo:g.tipo, cubos: g.cubos===""?0:Number(g.cubos)}));
   const j = { id:F.id||uid(), fecha, minutos:m, gildas, nota:$("fNota").value.trim(),
               inicio: F.modo==="horas"?$("fIni").value:"", fin: F.modo==="horas"?$("fFin").value:"",
+              pausa: F.modo==="horas"?(Number($("fPausa").value)||0):0,
               actualizado:new Date().toISOString() };
   $("fSave").disabled=true;
   try{ await store.saveJornada(j); toast(F.id?"Cambios guardados":`Guardado: ${fmt(m)}`); resetForm(); }
@@ -583,7 +641,7 @@ function chips(j){
 }
 function entryHTML(j){
   return `<div class="entry" data-id="${j.id}">
-    <div class="top"><span class="dur">${fmt(j.minutos)}</span><span class="rng">${j.inicio?`${j.inicio} – ${j.fin}`:"duración manual"}</span></div>
+    <div class="top"><span class="dur">${fmt(j.minutos)}</span><span class="rng">${j.inicio?`${j.inicio} – ${j.fin}${j.pausa?` · ${j.pausa}min descanso`:""}`:"duración manual"}</span></div>
     ${chips(j)}${j.nota?`<div class="note">${esc(j.nota)}</div>`:""}</div>`;
 }
 document.addEventListener("click", e=>{
@@ -705,7 +763,8 @@ $("mWeeks").addEventListener("click", e=>{ const r=e.target.closest("[data-week]
 
 /* ---------- TIPOS ---------- */
 function renderTipos(){
-  $("tList").innerHTML = S.tipos.map((t,i)=>`<div class="tipo"><input value="${esc(t)}" data-i="${i}" class="tName" aria-label="Nombre del tipo"><button class="x" data-i="${i}" aria-label="Quitar tipo" style="width:44px">×</button></div>`).join("");
+  const n=S.tipos.length;
+  $("tList").innerHTML = S.tipos.map((t,i)=>`<div class="tipo"><div class="mv"><button class="up" data-i="${i}" aria-label="Subir" ${i===0?"disabled":""}>▲</button><button class="dn" data-i="${i}" aria-label="Bajar" ${i===n-1?"disabled":""}>▼</button></div><input value="${esc(t)}" data-i="${i}" class="tName" aria-label="Nombre del tipo"><button class="x" data-i="${i}" aria-label="Quitar tipo" style="width:44px">×</button></div>`).join("");
 }
 $("tList").addEventListener("change", e=>{
   if(!e.target.classList.contains("tName")) return;
@@ -714,6 +773,13 @@ $("tList").addEventListener("change", e=>{
   l[+e.target.dataset.i]=v; store.saveTipos(l).then(()=>toast("Tipo actualizado")).catch(failMsg);
 });
 $("tList").addEventListener("click", e=>{
+  const mv=e.target.closest(".up,.dn");
+  if(mv){
+    const i=+mv.dataset.i, j=mv.classList.contains("up")?i-1:i+1, l=S.tipos.slice();
+    if(j<0||j>=l.length) return;
+    [l[i],l[j]]=[l[j],l[i]];
+    store.saveTipos(l).catch(failMsg); return;
+  }
   if(!e.target.classList.contains("x")) return;
   const l=S.tipos.slice(); l.splice(+e.target.dataset.i,1);
   if(!l.length) return toast("Deja al menos un tipo");
