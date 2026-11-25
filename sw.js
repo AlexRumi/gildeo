@@ -1,6 +1,6 @@
 // Gildeo – funciona sin conexión.
 // Al cambiar algo de la app, sube el número de versión para que los móviles la actualicen.
-const VERSION = "gildeo-v4";
+const VERSION = "gildeo-v5";
 const APP = ["./", "index.html", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "icons/apple-touch-icon.png"];
 
 self.addEventListener("install", e => {

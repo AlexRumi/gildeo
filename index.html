@@ -159,6 +159,66 @@ a.btn{text-decoration:none;text-align:center}
 .sheet table{font-size:13px}
 .copybox{width:100%;min-height:160px;margin-top:10px;font-size:13px}
 .stat .v.eur{color:var(--gold)}
+/* gildas con imagen */
+.im{border-radius:10px;overflow:hidden;background:#f4efe3;flex:none}
+.im svg,.im img{width:100%;height:100%;display:block;object-fit:cover}
+.gitem{display:grid;grid-template-columns:52px minmax(0,1fr) auto 40px;gap:10px;align-items:center;padding:8px;border:1px solid var(--line);border-radius:12px;background:#fff;margin-bottom:8px;cursor:pointer}
+.gitem .im{width:52px;height:52px}
+.gitem .nm{font-weight:700;font-size:15px;line-height:1.25}
+.gitem .cb{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--muted);margin-top:2px}
+.cb svg{width:22px;height:22px;flex:none}
+.gitem .n{font-family:Fraunces,serif;font-size:22px;color:var(--olive);white-space:nowrap}
+.pgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.opt{border:2px solid var(--line);background:#fff;border-radius:14px;padding:8px 8px 10px;cursor:pointer;text-align:center;font:600 14px/1.25 "DM Sans";color:var(--ink);position:relative}
+.opt .pic{aspect-ratio:1;border-radius:10px;overflow:hidden;background:#f4efe3;margin-bottom:8px}
+.opt .pic svg,.opt .pic img{width:100%;height:100%;display:block;object-fit:cover}
+.cubos .opt .pic{aspect-ratio:4/3}
+.opt.on{border-color:var(--olive);background:var(--olive-soft)}
+.opt.on::after{content:"✓";position:absolute;top:6px;right:6px;width:26px;height:26px;border-radius:99px;background:var(--olive);color:#fff;font-size:15px;line-height:26px}
+.opt:focus-visible,.step button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.step{display:flex;align-items:center;justify-content:center;gap:18px}
+.step button{width:64px;height:64px;border-radius:18px;border:0;background:var(--olive-soft);color:var(--olive);font:700 32px "DM Sans";cursor:pointer}
+.step .v{font-family:Fraunces,serif;font-size:30px;width:64px;text-align:center}
+.quick{display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.quick button{border:1px solid var(--line);background:#fff;border-radius:99px;min-width:44px;padding:9px 12px;font:600 14px "DM Sans";cursor:pointer;color:var(--muted)}
+.quick button.on{background:var(--olive);border-color:var(--olive);color:#fff}
+.pfoot{position:sticky;bottom:-20px;background:var(--card);padding:12px 0 4px;margin-top:14px}
+.pfoot .btn{white-space:normal;line-height:1.25}
+h1 .lg{width:38px;height:38px;border-radius:11px;overflow:hidden;flex:none;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+h1 .lg svg{width:100%;height:100%;display:block}
+.pasos{display:flex;gap:6px;margin:4px 0 14px}
+.pasos span{flex:1;height:5px;border-radius:99px;background:#ebe4d4}
+.pasos span.on{background:var(--olive)}
+.elegido{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+.elegido button{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;border-radius:12px;padding:5px 12px 5px 5px;font:600 14px "DM Sans";color:var(--ink);cursor:pointer;text-align:left}
+.elegido .im{width:38px;height:38px;border-radius:8px}
+.elegido small{display:block;font-weight:500;color:var(--muted);font-size:11px}
+.back{border:0;background:#f0eadc;border-radius:99px;height:40px;padding:0 14px;font:600 14px "DM Sans";color:var(--muted);cursor:pointer}
+.step.big3{margin:18px 0 6px}
+.step.big3 button{width:54px;height:54px;font-size:26px;border-radius:15px}
+.step.big3 .v{font-size:26px;width:56px}
+.gitem.noimg{grid-template-columns:minmax(0,1fr) auto 40px}
+.opt.solo{min-height:76px;display:flex;align-items:center;justify-content:center;font-size:15px}
+.im.vacia{border:1.5px dashed #c9bfa6;background:#fff;font:600 10px "DM Sans";color:var(--muted);display:flex!important;align-items:center;justify-content:center}
+.galbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:8px 0 12px}
+.galbar .btn{padding:9px 12px;font-size:13px}
+.opt.del{border-style:dashed;border-color:#e0b4aa}
+.opt.arm{border-color:var(--pepper);background:var(--pepper-soft);color:var(--pepper)}
+.opt.nueva .pic{display:flex;align-items:center;justify-content:center;font:300 48px "DM Sans";color:var(--olive);background:var(--olive-soft)}
+#pickSheet{overflow-x:hidden}
+.bar{align-items:center}
+.bar .tn{display:flex;align-items:center;gap:8px}
+.bar .tn .im{width:28px;height:28px;border-radius:7px}
+.bar .det{grid-column:1/3;display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--muted);margin-top:-2px}
+.bar .det span{display:inline-flex;align-items:center;gap:4px}
+.bar .det svg{width:18px;height:18px}
+.tipo{align-items:center}
+.tipo .ph{position:relative;width:44px;height:44px;margin:0;cursor:pointer;flex:none;border:0;padding:0;background:none}
+.tipo .ph .im{width:44px;height:44px}
+.tipo .ph i{position:absolute;right:-4px;bottom:-4px;width:20px;height:20px;border-radius:99px;background:var(--olive);color:#fff;font-style:normal;font-size:11px;display:flex;align-items:center;justify-content:center;border:2px solid var(--card)}
+.tipo .ph input{display:none}
+.tipo input.tName{font-size:14.5px;padding:10px 8px}
+.qfoto{display:block;margin:-4px 0 10px 86px;color:var(--pepper)}
 @media (max-width:520px){
   .stats{grid-template-columns:1fr 1fr}
   .day{grid-template-columns:78px 1fr}
@@ -291,7 +351,7 @@ a.btn{text-decoration:none;text-align:center}
     </div>
     <div class="card">
       <h2>Tipos de gilda</h2>
-      <p class="sub" style="margin-top:-6px">Estos son los que aparecen en el desplegable al registrar una jornada.</p>
+      <p class="sub" style="margin-top:-6px">Son los que salen al añadir una gilda. Toca «Imagen» para ponerle su foto o dibujo.</p>
       <div id="tList"></div>
       <div class="tipo" style="margin-top:14px">
         <input id="tNew" placeholder="Nuevo tipo, p. ej. Gilda de Bonito">
@@ -302,6 +362,7 @@ a.btn{text-decoration:none;text-align:center}
 </div>
 <div class="toast" id="toast"></div>
 <div class="modal hide" id="dayOv"><div class="sheet" id="daySheet"></div></div>
+<div class="modal hide" id="pickOv"><div class="sheet" id="pickSheet" role="dialog" aria-label="Añadir gilda"></div></div>
 <div class="ov hide" id="ov">
   <img id="ovImg" alt="Resumen de la semana">
   <div class="tip" id="ovTip"></div>
@@ -318,7 +379,7 @@ const DIAS = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábad
 const DIAS_C = ["D","L","M","X","J","V","S"];
 const MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
 
-const S = { jornadas: [], tipos: DEFAULT_TIPOS.slice(), activo: null, pagos: {}, avisos: {} };
+const S = { jornadas: [], tipos: DEFAULT_TIPOS.slice(), activo: null, pagos: {}, avisos: {}, dibujos: {}, imagenes: null };
 let db = null, mode = "loading";
 
 const $ = id => document.getElementById(id);
@@ -346,7 +407,7 @@ function toast(msg){ const t=$("toast"); t.textContent=msg; t.classList.add("sho
 
 /* ---------- almacenamiento: nube (db) o local ---------- */
 const LKEY = "gildas-v1";
-function loadLocal(){ try{ const d = JSON.parse(localStorage.getItem(LKEY)||"null"); if(d){ S.jornadas=d.jornadas||[]; S.tipos=d.tipos?.length?d.tipos:DEFAULT_TIPOS.slice(); S.activo=d.activo||null; S.pagos=d.pagos||{}; S.avisos=d.avisos||{}; } }catch(e){} }
+function loadLocal(){ try{ const d = JSON.parse(localStorage.getItem(LKEY)||"null"); if(d){ S.jornadas=d.jornadas||[]; S.tipos=d.tipos?.length?d.tipos:DEFAULT_TIPOS.slice(); S.activo=d.activo||null; S.pagos=d.pagos||{}; S.avisos=d.avisos||{}; S.dibujos=d.dibujos||{}; S.imagenes=Array.isArray(d.imagenes)?d.imagenes:null; } }catch(e){} }
 function saveLocal(){ try{ localStorage.setItem(LKEY, JSON.stringify(S)); }catch(e){} }
 
 async function retry(fn){ try{ return await fn(); }catch(e){ if(e && e.code==="unavailable"){ await new Promise(r=>setTimeout(r,500+Math.random()*800)); return fn(); } throw e; } }
@@ -383,6 +444,8 @@ const store = {
       const map={}; S.jornadas.forEach(j=>map[j.id]=j); data.jornadas.forEach(j=>map[j.id]=j);
       S.jornadas=Object.values(map); Object.assign(S.pagos, data.pagos||{});
       if(data.tipos&&data.tipos.length) S.tipos=data.tipos;
+      if(data.dibujos) Object.assign(S.dibujos, data.dibujos);
+      if(Array.isArray(data.imagenes)) S.imagenes=data.imagenes;
       saveLocal(); renderAll(); refreshSelects(); return;
     }
     let n=0, tot=data.jornadas.length+Object.keys(data.pagos||{}).length;
@@ -534,8 +597,87 @@ function tick(){
 }
 setInterval(tick,1000);
 
+/* ---------- imágenes de gildas y cubos ---------- */
+const CUBOS = [
+  {id:"redondo", nombre:"Redondo", f:"r", s:.78},
+  {id:"redondo-grande", nombre:"Redondo grande", f:"r", s:1.05},
+  {id:"cuadrado", nombre:"Cuadrado", f:"c", s:.72},
+  {id:"cuadrado-grande", nombre:"Cuadrado grande", f:"c", s:.98}
+];
+const cuboDe = id => CUBOS.find(c=>c.id===id);
+/* Cada pieza se dibuja tumbada a lo largo del palillo (x) y centrada en 0. w = lo que ocupa. */
+const SW='stroke-width="1.2" stroke-linejoin="round"';
+const PZ = {
+  ov:{w:24, d:`<ellipse rx="12" ry="13" fill="#c4b331" stroke="#8a7c17" ${SW}/><ellipse cx="-4" cy="-5.5" rx="4.2" ry="2.6" fill="#ece17f"/>`},
+  on:{w:24, d:`<ellipse rx="12" ry="13" fill="#1b1b21" stroke="#000" ${SW}/><ellipse cx="-4" cy="-5.5" rx="3.6" ry="2.2" fill="#80808e"/>`},
+  pi:{w:13, d:`<path d="M-5 -21 C-7 -8 -6 8 -4 21 C0 24 5 23 6 18 C7 6 6 -10 4 -20 C2 -24 -3 -24 -5 -21Z" fill="#a9ad3b" stroke="#757922" ${SW}/><path d="M-1 -17 C-2 -6 -2 8 0 17" stroke="#d7da8e" stroke-width="1.6" fill="none" stroke-linecap="round"/>`},
+  pp:{w:11, d:`<path d="M-4 -11 C-5 -4 -5 4 -3 11 C0 13 4 12 5 9 C5 2 5 -5 3 -11 C1 -13 -2 -13 -4 -11Z" fill="#a9ad3b" stroke="#757922" ${SW}/><path d="M-1 -8 C-1.5 -3 -1.5 3 0 7" stroke="#d7da8e" stroke-width="1.4" fill="none" stroke-linecap="round"/>`},
+  ce:{w:16, d:`<path d="M-7 -13 C-2 -16 5 -15 8 -10 C9 -3 9 4 7 11 C3 15 -4 15 -7 11 C-9 4 -9 -6 -7 -13Z" fill="#f4f1e4" stroke="#bdb79c" ${SW}/><path d="M-4 -11 C-5 -3 -5 4 -4 11 M1 -13 C0 -4 0 4 1 13" stroke="#d6d1b6" stroke-width="1.2" fill="none"/><path d="M5 -10 C6 -3 6 4 5 10" stroke="#cfd7a6" stroke-width="1.4" fill="none"/>`},
+  ch:{w:24, d:`<path d="M-11 -4 C-12 -12 -4 -14 0 -12 C5 -14 12 -11 12 -3 C13 6 8 13 0 12 C-7 13 -12 6 -11 -4Z" fill="#d9261f" stroke="#991410" ${SW}/><path d="M-6 -8 C-2 -10 3 -10 6 -7" stroke="#f6a091" stroke-width="2" fill="none" stroke-linecap="round"/>`},
+  pq:{w:13, d:`<path d="M-6 -17 L5 -19 L1 -11 L8 -6 L-1 -2 L6 3 L-3 8 L5 14 L-5 17 L-7 6 L-3 0 L-8 -6Z" fill="#cb241b" stroke="#8d130e" ${SW}/><path d="M-3 -14 L2 -15" stroke="#f08072" stroke-width="1.6" stroke-linecap="round"/>`},
+  an:{w:21, d:`<circle r="11" fill="#8b6d61" stroke="#5a4037" ${SW}/><path d="M0 0 C3 -1 3 4 0 4 C-5 4 -5 -4 0 -5 C7 -6 8 6 1 8 C-7 9 -10 -2 -6 -7" stroke="#5a4037" stroke-width="1.4" fill="none"/>`},
+  ap:{w:24, d:`<path d="M-12 -12 C-4 -15 6 -12 12 -8 C14 0 12 9 9 13 C0 15 -8 13 -12 10 C-14 2 -14 -6 -12 -12Z" fill="#ba8a7c" stroke="#7d564b" ${SW}/><path d="M-9 -6 C-2 -8 5 -6 10 -3 M-10 3 C-2 1 5 3 10 6" stroke="#9c6c5f" stroke-width="1.3" fill="none"/>`},
+  bo:{w:21, d:`<circle r="11" fill="#f2ede1" stroke="#a69e8b" ${SW}/><path d="M0 0 C3 -1 3 4 0 4 C-5 4 -5 -4 0 -5 C7 -6 8 6 1 8 C-7 9 -10 -2 -6 -7" stroke="#3d3d45" stroke-width="1.3" fill="none"/>`},
+  bh:{w:21, d:`<circle r="11" fill="#f2ede1" stroke="#a69e8b" ${SW}/><path d="M0 0 C3 -1 3 4 0 4 C-5 4 -5 -4 0 -5 C7 -6 8 6 1 8 C-7 9 -10 -2 -6 -7" stroke="#3d3d45" stroke-width="1.3" fill="none"/><g fill="#3e6b20"><circle cx="-6" cy="3" r="1.1"/><circle cx="5" cy="-6" r="1"/><circle cx="6" cy="3" r="1.1"/><circle cx="-3" cy="-8" r="1"/><circle cx="-1" cy="8" r="1"/></g>`},
+  ts:{w:12, d:`<path d="M-5 -16 C0 -19 5 -15 5 -9 C7 -3 3 2 6 7 C8 12 3 17 -2 15 C-6 13 -4 8 -6 3 C-8 -3 -8 -12 -5 -16Z" fill="#8d1d15" stroke="#5c0f0a" ${SW}/><path d="M-3 -12 C0 -9 -2 -4 1 -1 M-1 6 C1 9 3 10 2 12" stroke="#c9493c" stroke-width="1.3" fill="none"/>`},
+  qu:{w:23, d:`<rect x="-11" y="-12" width="22" height="24" rx="2" fill="#f6e8b4" stroke="#ccb26a" ${SW}/><g fill="#dcc47c"><circle cx="-4" cy="-4" r="1.3"/><circle cx="4" cy="2" r="1"/><circle cx="-2" cy="6" r="1.1"/></g>`},
+  at:{w:22, d:`<rect x="-11" y="-11" width="22" height="23" rx="4" fill="#7c3d4b" stroke="#52222d" ${SW}/><path d="M-9 -4 C-2 -6 4 -3 9 -5 M-9 4 C-2 2 4 5 9 3" stroke="#a7626f" stroke-width="1.4" fill="none"/>`},
+  sa:{w:18, d:`<ellipse rx="9" ry="14" fill="#8f3e4a" stroke="#5e2430" ${SW}/><g fill="#ecd3d5"><ellipse cx="-2" cy="-6" rx="2" ry="1.4"/><ellipse cx="3" cy="1" rx="1.6" ry="2"/><ellipse cx="-3" cy="6" rx="1.8" ry="1.3"/><ellipse cx="3" cy="-9" rx="1.2" ry="1"/></g>`},
+  pu:{w:23, d:`<path d="M-11 -10 C-6 -16 8 -15 11 -8 C13 0 12 10 6 13 C-2 16 -10 12 -12 4 C-13 -2 -13 -6 -11 -10Z" fill="#f0d1c9" stroke="#b67980" ${SW}/><path d="M-11 -10 C-6 -16 8 -15 11 -8 C6 -11 -4 -12 -11 -10Z" fill="#b8697a"/><circle cx="3" cy="3" r="3.2" fill="#f8e3dd" stroke="#c98c8c" stroke-width="1"/><g fill="#c9532c"><circle cx="-5" cy="-2" r=".9"/><circle cx="-2" cy="7" r=".8"/><circle cx="7" cy="-3" r=".8"/></g>`},
+  pe:{w:12, d:`<ellipse rx="5.5" ry="11" fill="#6f7d2c" stroke="#4a5519" ${SW}/><g fill="#9cab50"><circle cx="-1" cy="-5" r=".9"/><circle cx="1.5" cy="1" r=".9"/><circle cx="-1.5" cy="6" r=".9"/></g>`},
+  hu:{w:26, d:`<ellipse rx="13" ry="10" fill="#fbf8f1" stroke="#d2c8b4" ${SW}/><path d="M-9 5 C-3 9 5 9 10 4" stroke="#ece3d0" stroke-width="2.2" fill="none" stroke-linecap="round"/><ellipse cx="-5" cy="-4" rx="3.5" ry="2" fill="#fff"/>`}
+};
+const GILDAS = {
+  "anchoa":         {n:"Clásica de Anchoa",            p:["ov","an","pi","an","ov"]},
+  "boqueron":       {n:"Clásica de Boquerón",          p:["ov","bo","pi","bo","ov"]},
+  "matrimonio":     {n:"Clásica de Matrimonio",        p:["ov","an","an","pi","bo","ov"]},
+  "boq-cherry":     {n:"Boquerón con cherry",        p:["ov","pp","ch","bo","bo","ch","pp","ov"]},
+  "bonito-pimiento":{n:"Bonito con pimiento",          p:["ov","pq","pi","ap","ov"]},
+  "queso-atun":     {n:"Queso, tomate seco y atún",    p:["ov","ts","qu","at","ov"]},
+  "boq-tomate":     {n:"Boquerón con tomate seco", p:["ov","ts","bh","bh","ts","pi","on"]},
+  "fuet":           {n:"Fuet y queso",           p:["sa","qu","pi","qu","sa"]},
+  "pulpo":          {n:"Pulpo",                        p:["ov","pu","ts","ce","ts","pe","pu"]},
+  "huevo":          {n:"Huevo de codorniz",            p:["ov","pi","hu","ts","ov"]}
+};
+const SVG_CACHE = {};
+function gildaSVG(id){
+  const key = GILDAS[id] ? id : "_";
+  if(SVG_CACHE[key]) return SVG_CACHE[key];
+  const parts = (GILDAS[id] || {p:["ov","pi","ov"]}).p;
+  let x=0; const placed=[];
+  parts.forEach(k=>{ const P=PZ[k]; placed.push([P, x+P.w/2]); x+=P.w-1; });
+  const L=x, a=-L/2, sc=Math.min(1.35, 152/(L+31)).toFixed(3);
+  const body = placed.map(([P,c])=>`<g transform="translate(${(a+c).toFixed(1)} 0)">${P.d}</g>`).join("");
+  return SVG_CACHE[key] = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-80 -80 160 160" aria-hidden="true"><rect x="-80" y="-80" width="160" height="160" fill="#f4efe3"/>
+    <g transform="rotate(58) scale(${sc})">
+      <rect x="${a-6}" y="-9" width="${L+12}" height="28" rx="14" fill="#5a4a2a" opacity=".08" transform="translate(5 9)"/>
+      <line x1="${a-28}" y1="0" x2="${a-10}" y2="0" stroke="#17171a" stroke-width="2.6" stroke-linecap="round"/>
+      <line x1="${a-10}" y1="0" x2="${a+L+4}" y2="0" stroke="#d3b37c" stroke-width="2.4" stroke-linecap="round"/>
+      <rect x="${a-12}" y="-7" width="9" height="14" rx="3" fill="#e0272b" stroke="#a0161a" stroke-width="1"/>
+      ${body}</g></svg>`;
+}
+function cuboSVG(forma, s, bg=true){
+  const cx=50, b=86, w=58*s, bw=46*s, h=44*s, t=b-h, st=`stroke="#a99668" stroke-width="1.6" stroke-linejoin="round"`;
+  let body, top;
+  if(forma==="r"){
+    body=`<path d="M${cx-w/2} ${t} L${cx-bw/2} ${b} Q${cx} ${b+7*s} ${cx+bw/2} ${b} L${cx+w/2} ${t}Z" fill="#f2e6c4" ${st}/>`;
+    top=`<ellipse cx="${cx}" cy="${t}" rx="${w/2}" ry="${8*s}" fill="#fbf6e6" ${st}/><ellipse cx="${cx}" cy="${t+1}" rx="${w/2-5*s}" ry="${5.5*s}" fill="#e2c565"/>`;
+  } else {
+    const d=9*s;
+    body=`<path d="M${cx-w/2} ${t} L${cx-bw/2} ${b} L${cx+bw/2} ${b} L${cx+w/2} ${t}Z" fill="#f2e6c4" ${st}/>`;
+    top=`<path d="M${cx-w/2} ${t} L${cx-w/2+d} ${t-d} L${cx+w/2+d*.2} ${t-d} L${cx+w/2} ${t}Z" fill="#fbf6e6" ${st}/><path d="M${cx-w/2+5*s} ${t-1.5} L${cx-w/2+d+2*s} ${t-d+2.5*s} L${cx+w/2-2*s} ${t-d+2.5*s} L${cx+w/2-5*s} ${t-1.5}Z" fill="#e2c565"/>`;
+  }
+  return `<svg viewBox="0 0 100 ${bg?75:100}" aria-hidden="true">${bg?`<rect width="100" height="75" fill="#f4efe3"/><g transform="translate(0 -18)">`:"<g>"}<ellipse cx="50" cy="${b+3}" rx="${w/2+6}" ry="4" fill="#e4dccb"/>${body}${top}</g></svg>`;
+}
+const IMG_BASE = Object.keys(GILDAS).map(k=>({id:"d-"+k, dib:k}));
+const imagenes = () => S.imagenes || IMG_BASE;
+const imgById = id => id ? imagenes().find(i=>i.id===id) : null;
+const imgHTML = im => im.dib ? gildaSVG(im.dib) : `<img src="${esc(im.src)}" alt="">`;
+const tipoPic = t => { const im=imgById(S.dibujos[t]); return im ? imgHTML(im) : ""; };
+
+
 /* ---------- formulario ---------- */
-let F = { id:null, modo:"horas", gildas:[{tipo:"",cubos:""}] };
+let F = { id:null, modo:"horas", gildas:[] };
 
 function setModo(m){
   F.modo=m;
@@ -563,32 +705,135 @@ function updateCalc(){
 }
 ["fIni","fFin","fPausa","fH","fM"].forEach(id=>$(id).addEventListener("input",updateCalc));
 
-function optionsFor(sel){
-  const list = S.tipos.slice();
-  if(sel && !list.includes(sel)) list.push(sel);
-  return `<option value="">Elige tipo…</option>` + list.map(t=>`<option ${t===sel?"selected":""}>${esc(t)}</option>`).join("");
-}
 function renderGRows(){
-  $("gList").innerHTML = F.gildas.map((g,i)=>`
-    <div class="grow">
-      <select data-i="${i}" class="gTipo" aria-label="Tipo de gilda">${optionsFor(g.tipo)}</select>
-      <input data-i="${i}" class="gCubos" type="number" min="0" step="0.5" inputmode="decimal" placeholder="Cubos" value="${esc(g.cubos)}" aria-label="Cubos">
-      <button class="x" data-i="${i}" aria-label="Quitar">×</button>
-    </div>`).join("");
+  $("gList").innerHTML = F.gildas.length ? F.gildas.map((g,i)=>{
+    const c=cuboDe(g.cubo);
+    return `<div class="gitem${tipoPic(g.tipo)?"":" noimg"}" data-k="${i}">
+      ${tipoPic(g.tipo)?`<div class="im">${tipoPic(g.tipo)}</div>`:""}
+      <div><div class="nm">${esc(g.tipo)}</div><div class="cb">${c?`${cuboSVG(c.f,c.s,false)}Cubo ${esc(c.nombre.toLowerCase())}`:"Sin tamaño de cubo"}</div></div>
+      <div class="n">× ${fmtCubos(Number(g.cubos)||0)}</div>
+      <button class="x" data-i="${i}" aria-label="Quitar">×</button></div>`;
+  }).join("") : `<div class="empty" style="padding-bottom:10px">Toca «Añadir gilda» para apuntar lo que has hecho.</div>`;
 }
-function refreshSelects(){ renderGRows(); }
-$("gList").addEventListener("change", e=>{ if(e.target.classList.contains("gTipo")) F.gildas[+e.target.dataset.i].tipo=e.target.value; });
-$("gList").addEventListener("input", e=>{ if(e.target.classList.contains("gCubos")) F.gildas[+e.target.dataset.i].cubos=e.target.value; });
+function refreshSelects(){ renderGRows(); if(!galTipo && !$("pickOv").classList.contains("hide")) renderPicker(); }
 $("gList").addEventListener("click", e=>{
-  if(!e.target.classList.contains("x")) return;
-  F.gildas.splice(+e.target.dataset.i,1);
-  if(!F.gildas.length) F.gildas.push({tipo:"",cubos:""});
-  renderGRows();
+  const x=e.target.closest(".x");
+  if(x){ F.gildas.splice(+x.dataset.i,1); renderGRows(); return; }
+  const it=e.target.closest("[data-k]"); if(it) abrirPicker(+it.dataset.k);
 });
-$("gAdd").onclick = ()=>{ F.gildas.push({tipo:"",cubos:""}); renderGRows(); };
+$("gAdd").onclick = ()=> abrirPicker(null);
+
+/* ---------- selector de gilda, cubo y cantidad ---------- */
+let P = { k:null, tipo:null, cubo:null, n:1 };
+let galTipo = null;
+let galDel=false, galArm=null;
+function abrirGaleria(t){
+  galTipo=t; galDel=false; galArm=null;
+  renderGaleria(); $("pickSheet").scrollTop=0;
+  $("pickOv").classList.remove("hide"); document.body.style.overflow="hidden";
+}
+function renderGaleria(){
+  const t=galTipo, act=S.dibujos[t], lista=imagenes();
+  const faltan=IMG_BASE.filter(b=>!lista.some(i=>i.id===b.id)).length;
+  $("pickSheet").innerHTML = `
+    <div class="hd"><div><div class="sub">Imagen de</div><h2 style="margin:2px 0 0">${esc(t)}</h2></div><button class="close" id="pClose" aria-label="Cerrar">×</button></div>
+    <div class="galbar"><span class="sub">${galDel?"Toca la imagen que quieras borrar.":"Toca la imagen que le corresponde."}</span><button class="btn ${galDel?"":"ghost"}" id="gDelMode">${galDel?"Hecho":"Borrar imágenes"}</button></div>
+    <div class="pgrid">
+      ${lista.map(im=>`<button class="opt${!galDel&&act===im.id?" on":""}${galDel?" del":""}${galArm===im.id?" arm":""}" data-imgid="${esc(im.id)}"><div class="pic">${imgHTML(im)}</div>${galArm===im.id?"¿Borrar? Toca otra vez":esc(im.dib&&GILDAS[im.dib]?GILDAS[im.dib].n:"Tu imagen")}</button>`).join("")}
+      ${galDel?"":`<label class="opt nueva"><div class="pic">+</div>Añadir imagen<input type="file" accept="image/*" data-gf="1" style="display:none"></label>`}
+    </div>
+    ${!galDel&&imgById(act)?`<button class="link" id="gQuitar" style="display:block;margin:16px auto 0">Dejar este tipo sin imagen</button>`:""}
+    ${galDel&&faltan?`<button class="link" id="gRest" style="display:block;margin:16px auto 0">Recuperar ${faltan===1?"el dibujo borrado":`los ${faltan} dibujos borrados`}</button>`:""}
+    ${!lista.length&&galDel?`<div class="empty">No queda ninguna imagen.</div>`:""}`;
+}
+function guardarImgs(msg){ saveLocal(); renderAll(); renderGRows(); if(galTipo) renderGaleria(); if(msg) toast(msg); }
+function nuevaImagen(f){
+  const img=new Image(), url=URL.createObjectURL(f);
+  img.onload=()=>{ // recorte cuadrado y pequeño, para que ocupe poco
+    const s=Math.min(img.width,img.height), c=document.createElement("canvas"); c.width=c.height=320;
+    c.getContext("2d").drawImage(img,(img.width-s)/2,(img.height-s)/2,s,s,0,0,320,320);
+    URL.revokeObjectURL(url);
+    const im={id:"u-"+uid(), src:c.toDataURL("image/jpeg",.82)};
+    S.imagenes=[...imagenes(), im];
+    if(galTipo) S.dibujos[galTipo]=im.id;
+    guardarImgs("Imagen añadida");
+  };
+  img.onerror=()=>{ URL.revokeObjectURL(url); toast("No se pudo abrir esa imagen"); };
+  img.src=url;
+}
+$("pickSheet").addEventListener("change", e=>{
+  if(!e.target.dataset.gf || !galTipo) return;
+  const f=e.target.files&&e.target.files[0]; e.target.value="";
+  if(f) nuevaImagen(f);
+});
+function abrirPicker(k){
+  galTipo=null;
+  const g = k!=null ? F.gildas[k] : null;
+  P = { k, tipo:g?g.tipo:null, cubo:g&&g.cubo?g.cubo:null, n:g?(Number(g.cubos)||1):1 };
+  P.paso = g ? (P.cubo ? 3 : 2) : 1;
+  renderPicker(); $("pickSheet").scrollTop=0;
+  $("pickOv").classList.remove("hide"); document.body.style.overflow="hidden";
+}
+function cerrarPicker(){ $("pickOv").classList.add("hide"); document.body.style.overflow=""; }
+function renderPicker(){
+  const tipos=S.tipos.slice(); if(P.tipo && !tipos.includes(P.tipo)) tipos.push(P.tipo);
+  const c=cuboDe(P.cubo), paso=P.paso;
+  const titulo = ["","¿Qué gilda has hecho?","¿En qué cubo?","¿Cuántos cubos?"][paso];
+  const elegido = `<div class="elegido">
+      ${paso>1&&P.tipo?`<button data-ir="1">${tipoPic(P.tipo)?`<span class="im">${tipoPic(P.tipo)}</span>`:""}<span>${esc(P.tipo)}<small>Cambiar gilda</small></span></button>`:""}
+      ${paso>2&&c?`<button data-ir="2"><span class="im" style="background:#f4efe3">${cuboSVG(c.f,c.s,false)}</span><span>Cubo ${esc(c.nombre.toLowerCase())}<small>Cambiar cubo</small></span></button>`:""}
+    </div>`;
+  let cuerpo;
+  if(paso===1) cuerpo = `<div class="pgrid">${tipos.map(t=>`<button class="opt${P.tipo===t?" on":""}${tipoPic(t)?"":" solo"}" data-g="${esc(t)}">${tipoPic(t)?`<div class="pic">${tipoPic(t)}</div>`:""}${esc(t)}</button>`).join("")}</div>`;
+  else if(paso===2) cuerpo = elegido + `<div class="pgrid cubos">${CUBOS.map(x=>`<button class="opt${P.cubo===x.id?" on":""}" data-c="${x.id}"><div class="pic">${cuboSVG(x.f,x.s)}</div>${esc(x.nombre)}</button>`).join("")}</div>`;
+  else cuerpo = elegido + `<div class="step big3"><button id="pMenos" aria-label="Menos">−</button><div class="v">${fmtCubos(P.n)}</div><button id="pMas" aria-label="Más">+</button></div>
+    <div class="pfoot"><button class="btn" id="pOk" style="width:100%;padding:16px;font-size:17px">${P.k!=null?"Guardar cambio":`Añadir ${fmtCubos(P.n)} × cubo ${esc(c.nombre.toLowerCase())}`}</button></div>`;
+  $("pickSheet").innerHTML = `
+    <div class="hd">${paso>1?`<button class="back" id="pBack">‹ Atrás</button>`:`<h2 style="margin:0">${P.k!=null?"Cambiar gilda":"Añadir gilda"}</h2>`}<button class="close" id="pClose" aria-label="Cerrar">×</button></div>
+    <div class="pasos">${[1,2,3].map(i=>`<span class="${i<=paso?"on":""}"></span>`).join("")}</div>
+    <h2 style="margin:0 0 12px">${paso}. ${titulo}</h2>
+    ${cuerpo}`;
+}
+function irPaso(n){ P.paso=n; renderPicker(); $("pickSheet").scrollTop=0; }
+$("pickSheet").addEventListener("click", e=>{
+  const t=e.target;
+  if(t.closest("#pClose")) return cerrarPicker();
+  if(galTipo){
+    if(t.closest("#gDelMode")){ galDel=!galDel; galArm=null; renderGaleria(); return; }
+    if(t.closest("#gQuitar")){ delete S.dibujos[galTipo]; cerrarPicker(); guardarImgs("Tipo sin imagen"); return; }
+    if(t.closest("#gRest")){ const l=imagenes().slice(); IMG_BASE.forEach(b=>{ if(!l.some(i=>i.id===b.id)) l.push(b); }); S.imagenes=l; guardarImgs("Dibujos recuperados"); return; }
+    const im=t.closest("[data-imgid]"); if(!im) return;
+    const id=im.dataset.imgid;
+    if(galDel){
+      if(galArm!==id){ galArm=id; renderGaleria(); return; }
+      galArm=null; S.imagenes=imagenes().filter(i=>i.id!==id);
+      for(const k in S.dibujos) if(S.dibujos[k]===id) delete S.dibujos[k];
+      guardarImgs("Imagen borrada"); return;
+    }
+    S.dibujos[galTipo]=id; cerrarPicker(); guardarImgs("Imagen puesta"); return;
+  }
+  const g=t.closest("[data-g]");
+  if(g){ P.tipo=g.dataset.g; irPaso(2); return; }
+  const c=t.closest("[data-c]");
+  if(c){ P.cubo=c.dataset.c; irPaso(3); return; }
+  if(t.closest("#pBack")){ irPaso(P.paso-1); return; }
+  const ir=t.closest("[data-ir]"); if(ir){ irPaso(+ir.dataset.ir); return; }
+  const q=t.closest("[data-q]"); if(q){ P.n=Number(q.dataset.q); renderPicker(); return; }
+  if(t.closest("#pMenos")){ P.n = P.n>1 ? P.n-1 : 0.5; renderPicker(); return; }
+  if(t.closest("#pMas")){ P.n = P.n<1 ? 1 : Math.min(99,P.n+1); renderPicker(); return; }
+  if(t.closest("#pOk") && P.tipo && P.cubo){
+    const item={tipo:P.tipo, cubo:P.cubo, cubos:P.n};
+    if(P.k!=null) F.gildas[P.k]=item;
+    else { const ex=F.gildas.find(x=>x.tipo===P.tipo&&x.cubo===P.cubo); if(ex) ex.cubos=(Number(ex.cubos)||0)+P.n; else F.gildas.push(item); }
+    cerrarPicker(); renderGRows();
+    toast(P.k!=null?"Gilda cambiada":`Añadido: ${fmtCubos(P.n)} × ${P.tipo}`);
+  }
+});
+$("pickOv").addEventListener("click", e=>{ if(e.target.id==="pickOv") cerrarPicker(); });
+document.addEventListener("keydown", e=>{ if(e.key==="Escape" && !$("pickOv").classList.contains("hide")) cerrarPicker(); });
 
 function resetForm(){
-  F = { id:null, modo:F.modo, gildas:[{tipo:"",cubos:""}] };
+  F = { id:null, modo:F.modo, gildas:[] };
   $("fFecha").value=today(); $("fIni").value=""; $("fFin").value=""; $("fPausa").value=""; $("fH").value=""; $("fM").value=""; $("fNota").value="";
   $("fErr").textContent=""; $("formTitle").textContent="Añadir jornada"; $("fSave").textContent="Guardar jornada";
   $("fCancel").classList.add("hide"); $("fDel").classList.add("hide"); $("fDel").textContent="Eliminar"; delArmed=false;
@@ -599,7 +844,7 @@ function editJornada(id){
   const j=S.jornadas.find(x=>x.id===id); if(!j) return;
   cerrarDia();
   showView("registrar");
-  F = { id:j.id, modo:j.inicio?"horas":"dur", gildas:(j.gildas&&j.gildas.length? j.gildas.map(g=>({tipo:g.tipo,cubos:g.cubos??""})) : [{tipo:"",cubos:""}]) };
+  F = { id:j.id, modo:j.inicio?"horas":"dur", gildas:(j.gildas||[]).map(g=>({tipo:g.tipo, cubo:g.cubo||"", cubos:g.cubos??0})) };
   $("fFecha").value=j.fecha;
   $("fIni").value=j.inicio||""; $("fFin").value=j.fin||""; $("fPausa").value=j.pausa||"";
   $("fH").value=Math.floor(j.minutos/60); $("fM").value=j.minutos%60;
@@ -617,7 +862,7 @@ $("fSave").onclick = async ()=>{
   if(!fecha) return $("fErr").textContent="Elige el día.";
   if(m==null||m<=0) return $("fErr").textContent = F.modo==="horas" ? "Pon la hora de inicio y la de fin." : "Pon las horas y minutos.";
   if(m>16*60) return $("fErr").textContent="Más de 16 horas… revisa las horas.";
-  const gildas = F.gildas.filter(g=>g.tipo).map(g=>({tipo:g.tipo, cubos: g.cubos===""?0:Number(g.cubos)}));
+  const gildas = F.gildas.filter(g=>g.tipo).map(g=>({tipo:g.tipo, cubo:g.cubo||"", cubos:Number(g.cubos)||0}));
   const j = { id:F.id||uid(), fecha, minutos:m, gildas, nota:$("fNota").value.trim(),
               inicio: F.modo==="horas"?$("fIni").value:"", fin: F.modo==="horas"?$("fFin").value:"",
               pausa: F.modo==="horas"?(Number($("fPausa").value)||0):0,
@@ -637,7 +882,7 @@ $("fDel").onclick = async ()=>{
 /* ---------- piezas de vista ---------- */
 function chips(j){
   if(!j.gildas||!j.gildas.length) return "";
-  return `<div class="chips">${j.gildas.map(g=>`<span class="chip">${esc(g.tipo)}${g.cubos?` · <b>${fmtCubos(g.cubos)}</b> cubo${g.cubos==1?"":"s"}`:""}</span>`).join("")}</div>`;
+  return `<div class="chips">${j.gildas.map(g=>{ const c=cuboDe(g.cubo); return `<span class="chip">${esc(g.tipo)}${g.cubos?` · <b>${fmtCubos(g.cubos)}</b> ${c?"× "+esc(c.nombre.toLowerCase()):`cubo${g.cubos==1?"":"s"}`}`:""}</span>`; }).join("")}</div>`;
 }
 function entryHTML(j){
   return `<div class="entry" data-id="${j.id}">
@@ -649,12 +894,17 @@ document.addEventListener("click", e=>{
 });
 function stat(v,l,main){ return `<div class="stat${main?" main":""}"><div class="v">${v}</div><div class="l">${l}</div></div>`; }
 function tiposBars(list){
-  const map={};
-  list.forEach(j=>(j.gildas||[]).forEach(g=>{ map[g.tipo]=(map[g.tipo]||0)+(Number(g.cubos)||0); }));
+  const map={}, det={};
+  list.forEach(j=>(j.gildas||[]).forEach(g=>{ const n=Number(g.cubos)||0, k=g.cubo||""; map[g.tipo]=(map[g.tipo]||0)+n; (det[g.tipo]??={})[k]=(det[g.tipo][k]||0)+n; }));
   const rows=Object.entries(map).sort((a,b)=>b[1]-a[1]);
   if(!rows.length) return `<div class="empty">Aún no hay gildas apuntadas en este periodo.</div>`;
   const max=Math.max(...rows.map(r=>r[1]),1);
-  return rows.map(([t,c])=>`<div class="bar"><span>${esc(t)}</span><b>${fmtCubos(c)} cubos</b><div class="track"><div class="fill" style="width:${c/max*100}%"></div></div></div>`).join("");
+  return rows.map(([t,c])=>{
+    const d=det[t]||{}, tiene=CUBOS.some(x=>d[x.id]);
+    const parts=CUBOS.filter(x=>d[x.id]).map(x=>`<span>${cuboSVG(x.f,x.s,false)}${fmtCubos(d[x.id])} ${esc(x.nombre.toLowerCase())}</span>`);
+    if(tiene && d[""]) parts.push(`<span>${fmtCubos(d[""])} sin tamaño</span>`);
+    return `<div class="bar"><span class="tn">${tipoPic(t)?`<span class="im">${tipoPic(t)}</span>`:""}${esc(t)}</span><b>${fmtCubos(c)} cubo${c==1?"":"s"}</b><div class="track"><div class="fill" style="width:${c/max*100}%"></div></div>${tiene?`<div class="det">${parts.join("")}</div>`:""}</div>`;
+  }).join("");
 }
 
 /* ---------- HOY ---------- */
@@ -764,15 +1014,18 @@ $("mWeeks").addEventListener("click", e=>{ const r=e.target.closest("[data-week]
 /* ---------- TIPOS ---------- */
 function renderTipos(){
   const n=S.tipos.length;
-  $("tList").innerHTML = S.tipos.map((t,i)=>`<div class="tipo"><div class="mv"><button class="up" data-i="${i}" aria-label="Subir" ${i===0?"disabled":""}>▲</button><button class="dn" data-i="${i}" aria-label="Bajar" ${i===n-1?"disabled":""}>▼</button></div><input value="${esc(t)}" data-i="${i}" class="tName" aria-label="Nombre del tipo"><button class="x" data-i="${i}" aria-label="Quitar tipo" style="width:44px">×</button></div>`).join("");
+  $("tList").innerHTML = S.tipos.map((t,i)=>`<div class="tipo"><div class="mv"><button class="up" data-i="${i}" aria-label="Subir" ${i===0?"disabled":""}>▲</button><button class="dn" data-i="${i}" aria-label="Bajar" ${i===n-1?"disabled":""}>▼</button></div><button class="ph" data-img="${i}" aria-label="Elegir imagen">${tipoPic(t)?`<span class="im" style="display:block">${tipoPic(t)}</span><i>✎</i>`:`<span class="im vacia">Imagen</span><i>+</i>`}</button><input value="${esc(t)}" data-i="${i}" class="tName" aria-label="Nombre del tipo"><button class="x" data-i="${i}" aria-label="Quitar tipo" style="width:44px">×</button></div>`).join("");
 }
 $("tList").addEventListener("change", e=>{
   if(!e.target.classList.contains("tName")) return;
-  const v=e.target.value.trim(), l=S.tipos.slice();
+  const v=e.target.value.trim(), l=S.tipos.slice(), old=l[+e.target.dataset.i];
   if(!v){ renderTipos(); return; }
+  if(S.dibujos[old] && v!==old){ S.dibujos[v]=S.dibujos[old]; delete S.dibujos[old]; }
   l[+e.target.dataset.i]=v; store.saveTipos(l).then(()=>toast("Tipo actualizado")).catch(failMsg);
 });
 $("tList").addEventListener("click", e=>{
+  const im=e.target.closest("[data-img]");
+  if(im){ abrirGaleria(S.tipos[+im.dataset.img]); return; }
   const mv=e.target.closest(".up,.dn");
   if(mv){
     const i=+mv.dataset.i, j=mv.classList.contains("up")?i-1:i+1, l=S.tipos.slice();
@@ -781,8 +1034,9 @@ $("tList").addEventListener("click", e=>{
     store.saveTipos(l).catch(failMsg); return;
   }
   if(!e.target.classList.contains("x")) return;
-  const l=S.tipos.slice(); l.splice(+e.target.dataset.i,1);
+  const l=S.tipos.slice(); const [quitado]=l.splice(+e.target.dataset.i,1);
   if(!l.length) return toast("Deja al menos un tipo");
+  delete S.dibujos[quitado];
   store.saveTipos(l).catch(failMsg);
 });
 $("tAdd").onclick=()=>{
@@ -1002,7 +1256,7 @@ function renderAjustes(){
 $("mesesList").addEventListener("click", e=>{ const r=e.target.closest("[data-mes]"); if(!r) return; const [y,m]=r.dataset.mes.split("-").map(Number); abrirResumenMes(y,m-1); });
 
 async function hacerCopia(){
-  const data={app:"control-gildas", version:1, fecha:new Date().toISOString(), jornadas:S.jornadas, pagos:S.pagos, tipos:S.tipos};
+  const data={app:"control-gildas", version:1, fecha:new Date().toISOString(), jornadas:S.jornadas, pagos:S.pagos, tipos:S.tipos, dibujos:S.dibujos, imagenes:S.imagenes};
   const txt=JSON.stringify(data,null,1), name=`gildas-copia-${today()}.json`;
   const d=await getDownloads();
   if(d){
