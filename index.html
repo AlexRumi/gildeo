@@ -336,6 +336,7 @@ textarea.tname{resize:none;font-size:17px;font-weight:600;line-height:1.3}
 .dg .cb{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--muted);margin-top:2px}
 .dg .n{font-family:Fraunces,serif;font-size:22px;color:var(--olive);white-space:nowrap}
 .tanda .ed{font-size:13px;font-weight:600;color:var(--olive);margin-top:6px}
+.dres{flex-wrap:wrap}
 @media (max-width:520px){ .day.wday{grid-template-columns:78px minmax(0,1fr) 14px} }
 @media (max-width:520px){
   .stats{grid-template-columns:1fr 1fr}
@@ -513,6 +514,21 @@ textarea.tname{resize:none;font-size:17px;font-weight:600;line-height:1.3}
 <script>
 /* ---------- datos y utilidades ---------- */
 const DEFAULT_TIPOS = ["Clásica de Anchoa","Clásica de Boquerón","Clásica de Matrimonio"];
+const GILDAS_NUEVAS = [{t:"Anchoa doble con tomate seco", d:"doble-anchoa", antes:"Doble anchoa con tomate seco"}];
+function anadirGildasNuevas(){
+  const vistas = S.gildasNuevas || []; let cambio=false;
+  GILDAS_NUEVAS.forEach(g=>{
+    if(g.antes){ // por si ya se instaló con el nombre anterior
+      if(S.tipos.includes(g.antes) && !S.tipos.includes(g.t)){ S.tipos=S.tipos.map(x=>x===g.antes?g.t:x); cambio=true; }
+      if(S.dibujos[g.antes]){ if(!S.dibujos[g.t]) S.dibujos[g.t]=S.dibujos[g.antes]; delete S.dibujos[g.antes]; cambio=true; }
+      S.jornadas.forEach(j=>(j.gildas||[]).forEach(x=>{ if(x.tipo===g.antes){ x.tipo=g.t; cambio=true; } }));
+    }
+    if(vistas.includes(g.d)) return;
+    vistas.push(g.d); cambio=true;
+    if(!S.tipos.includes(g.t) && !(S.tiposArch||[]).includes(g.t)){ S.tipos.push(g.t); if(!S.dibujos[g.t]) S.dibujos[g.t]="d-"+g.d; }
+  });
+  S.gildasNuevas=vistas; if(cambio) saveLocal();
+}
 const DIAS = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
 const DIAS_C = ["D","L","M","X","J","V","S"];
 const MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
@@ -545,7 +561,7 @@ function toast(msg){ const t=$("toast"); t.textContent=msg; t.classList.add("sho
 
 /* ---------- almacenamiento: nube (db) o local ---------- */
 const LKEY = "gildas-v1";
-function loadLocal(){ try{ const d = JSON.parse(localStorage.getItem(LKEY)||"null"); if(d){ S.jornadas=d.jornadas||[]; S.tipos=d.tipos?.length?d.tipos:DEFAULT_TIPOS.slice(); S.tiposArch=Array.isArray(d.tiposArch)?d.tiposArch:[]; S.activo=d.activo||null; S.pagos=d.pagos||{}; S.avisos=d.avisos||{}; S.dibujos=d.dibujos||{}; S.imagenes=Array.isArray(d.imagenes)?d.imagenes:null; S.basesVistas=d.basesVistas||null; S.cubos=Array.isArray(d.cubos)&&d.cubos.length&&d.cubos.every(c=>"grupo" in c)?d.cubos:null; S.imgCubos=Array.isArray(d.imgCubos)?d.imgCubos:null; S.basesCubosVistas=d.basesCubosVistas||null; } }catch(e){} }
+function loadLocal(){ try{ const d = JSON.parse(localStorage.getItem(LKEY)||"null"); if(d){ S.jornadas=d.jornadas||[]; S.tipos=d.tipos?.length?d.tipos:DEFAULT_TIPOS.slice(); S.tiposArch=Array.isArray(d.tiposArch)?d.tiposArch:[]; S.activo=d.activo||null; S.pagos=d.pagos||{}; S.avisos=d.avisos||{}; S.dibujos=d.dibujos||{}; S.imagenes=Array.isArray(d.imagenes)?d.imagenes:null; S.basesVistas=d.basesVistas||null; S.cubos=Array.isArray(d.cubos)&&d.cubos.length&&d.cubos.every(c=>"grupo" in c)?d.cubos:null; S.imgCubos=Array.isArray(d.imgCubos)?d.imgCubos:null; S.basesCubosVistas=d.basesCubosVistas||null; S.gildasNuevas=Array.isArray(d.gildasNuevas)?d.gildasNuevas:null; } }catch(e){} }
 function saveLocal(){ try{ localStorage.setItem(LKEY, JSON.stringify(S)); }catch(e){} }
 
 async function retry(fn){ try{ return await fn(); }catch(e){ if(e && e.code==="unavailable"){ await new Promise(r=>setTimeout(r,500+Math.random()*800)); return fn(); } throw e; } }
@@ -610,7 +626,7 @@ function setStatus(){
 
 async function initStore(){
   let ns = null;
-  if(!ns){ mode="local"; loadLocal(); quitarGildaNombres(); syncBases(); setStatus(); renderTimer(); renderAll(); refreshSelects(); renderBanner(); listo("j"); listo("a"); return; }
+  if(!ns){ mode="local"; loadLocal(); quitarGildaNombres(); anadirGildasNuevas(); syncBases(); setStatus(); renderTimer(); renderAll(); refreshSelects(); renderBanner(); listo("j"); listo("a"); return; }
   db = ns; mode="db"; setStatus();
   const slow = setTimeout(()=>{ $("status").textContent="Conectando…"; }, 10000);
   db.collection("jornadas").onSnapshot(snap=>{
@@ -741,12 +757,12 @@ setInterval(tick,1000);
 
 /* ---------- imágenes de gildas y cubos ---------- */
 const CUBO_DEF = [
-  {id:"redondo-peq",     grupo:"Redondo",  nombre:"Pequeño", f:"r", s:.62},
-  {id:"redondo-med",     grupo:"Redondo",  nombre:"Mediano", f:"r", s:.82},
-  {id:"redondo-grande",  grupo:"Redondo",  nombre:"Grande",  f:"r", s:1.05},
-  {id:"cuadrado-peq",    grupo:"Cuadrado", nombre:"Pequeño", f:"c", s:.58},
-  {id:"cuadrado-med",    grupo:"Cuadrado", nombre:"Mediano", f:"c", s:.78},
-  {id:"cuadrado-grande", grupo:"Cuadrado", nombre:"Grande",  f:"c", s:.98},
+  {id:"redondo-peq",     grupo:"Redondo",  nombre:"Pequeño", f:"r", s:.62, v:"rv", w:36, h:24},
+  {id:"redondo-med",     grupo:"Redondo",  nombre:"Mediano", f:"r", s:.82, v:"rv", w:64, h:30},
+  {id:"redondo-grande",  grupo:"Redondo",  nombre:"Grande",  f:"r", s:1.05, v:"rv", w:52, h:42},
+  {id:"cuadrado-peq",    grupo:"Cuadrado", nombre:"Pequeño", f:"c", s:.58, v:"cv", w:40, h:24},
+  {id:"cuadrado-med",    grupo:"Cuadrado", nombre:"Mediano", f:"c", s:.78, v:"cv", w:64, h:34},
+  {id:"cuadrado-grande", grupo:"Cuadrado", nombre:"Grande",  f:"c", s:.98, v:"tr", w:46, h:40},
   {id:"pedido-peq",      grupo:"Pedido",   nombre:"Pequeño", f:"p", s:.66},
   {id:"pedido-med",      grupo:"Pedido",   nombre:"Mediano", f:"p", s:.82},
   {id:"pedido-grande",   grupo:"Pedido",   nombre:"Grande",  f:"p", s:1}
@@ -779,6 +795,7 @@ const PZ = {
   sa:{w:18, d:`<ellipse rx="9" ry="14" fill="#8f3e4a" stroke="#5e2430" ${SW}/><g fill="#ecd3d5"><ellipse cx="-2" cy="-6" rx="2" ry="1.4"/><ellipse cx="3" cy="1" rx="1.6" ry="2"/><ellipse cx="-3" cy="6" rx="1.8" ry="1.3"/><ellipse cx="3" cy="-9" rx="1.2" ry="1"/></g>`},
   pu:{w:23, d:`<path d="M-11 -10 C-6 -16 8 -15 11 -8 C13 0 12 10 6 13 C-2 16 -10 12 -12 4 C-13 -2 -13 -6 -11 -10Z" fill="#f0d1c9" stroke="#b67980" ${SW}/><path d="M-11 -10 C-6 -16 8 -15 11 -8 C6 -11 -4 -12 -11 -10Z" fill="#b8697a"/><circle cx="3" cy="3" r="3.2" fill="#f8e3dd" stroke="#c98c8c" stroke-width="1"/><g fill="#c9532c"><circle cx="-5" cy="-2" r=".9"/><circle cx="-2" cy="7" r=".8"/><circle cx="7" cy="-3" r=".8"/></g>`},
   pe:{w:12, d:`<ellipse rx="5.5" ry="11" fill="#6f7d2c" stroke="#4a5519" ${SW}/><g fill="#9cab50"><circle cx="-1" cy="-5" r=".9"/><circle cx="1.5" cy="1" r=".9"/><circle cx="-1.5" cy="6" r=".9"/></g>`},
+  ad:{w:13, d:`<path d="M-5 11 C-7 2 -7 -9 -4.5 -16 C-2.5 -21.5 2.5 -21.5 4.5 -16 C7 -9 7 2 5 11 C3.5 13 1.5 12.5 0 10 C-1.5 12.5 -3.5 13 -5 11Z" fill="#8b6d61" stroke="#5a4037" ${SW}/><path d="M0 9 C-.8 1 -.8 -9 0 -17" stroke="#5a4037" stroke-width="1" fill="none" opacity=".7"/><path d="M-3 6 C-4 -2 -4 -9 -2.5 -14" stroke="#c9b7ad" stroke-width="1.4" fill="none" stroke-linecap="round"/>`},
   hu:{w:26, d:`<ellipse rx="13" ry="10" fill="#fbf8f1" stroke="#d2c8b4" ${SW}/><path d="M-9 5 C-3 9 5 9 10 4" stroke="#ece3d0" stroke-width="2.2" fill="none" stroke-linecap="round"/><ellipse cx="-5" cy="-4" rx="3.5" ry="2" fill="#fff"/>`}
 };
 const GILDAS = {
@@ -792,7 +809,8 @@ const GILDAS = {
   "fuet":           {n:"Fuet y queso",           p:["sa","qu","pi","qu","sa"]},
   "pulpo":          {n:"Pulpo",                        p:["ov","pu","ts","ce","ts","pe","pu"]},
   "huevo":          {n:"Huevo de codorniz",            p:["ov","pi","hu","ts","ov"]},
-  "atun-piparra":   {n:"Atún con piparra",             p:["ov","pi","at","pi","at","ov"]}
+  "atun-piparra":   {n:"Atún con piparra",             p:["ov","pi","at","pi","at","ov"]},
+  "doble-anchoa":   {n:"Anchoa doble con tomate seco", p:["ov","ad","ts","ad","pe","ov"]}
 };
 const SVG_CACHE = {};
 function gildaSVG(id){
@@ -828,6 +846,40 @@ function cuboSVG(forma, s, bg=true){
   }
   return `<svg viewBox="0 0 100 ${bg?75:100}" aria-hidden="true">${bg?`<rect width="100" height="75" fill="#f4efe3"/><g transform="translate(0 -18)">`:"<g>"}<ellipse cx="50" cy="${b+3}" rx="${w/2+6}" ry="4" fill="#e4dccb"/>${body}${top}</g></svg>`;
 }
+function cuboReal(d){
+  const cx=50, b=66, w=d.w, h=d.h, t=b-h;
+  const sombra=`<ellipse cx="${cx}" cy="${b+2}" rx="${w/2+5}" ry="3.2" fill="#e2d9c6"/>`;
+  let body="";
+  if(d.v==="tr"){ // cubo cuadrado transparente con tapa y asa
+    const lt=t-7;
+    body=`<path d="M${cx-w/2} ${t} L${cx-w/2+2.5} ${b} L${cx+w/2-2.5} ${b} L${cx+w/2} ${t}Z" fill="#e6edef" stroke="#a7b4b8" stroke-width="1.3" stroke-linejoin="round"/>
+      <ellipse cx="${cx}" cy="${b-7}" rx="${w/5}" ry="2.2" fill="none" stroke="#c4cfd2" stroke-width="1"/>
+      <rect x="${cx-w/2-2}" y="${t-3}" width="${w+4}" height="6" rx="2" fill="#f2f6f7" stroke="#a7b4b8" stroke-width="1.2"/>
+      <path d="M${cx-w/2-3} ${t-3} L${cx-w/2+3} ${lt} L${cx+w/2+3} ${lt} L${cx+w/2+3} ${t-3}Z" fill="#f7fafb" stroke="#a7b4b8" stroke-width="1.2" stroke-linejoin="round"/>
+      <ellipse cx="${cx+2}" cy="${lt+2.4}" rx="${w/4}" ry="1.6" fill="none" stroke="#c4cfd2" stroke-width="1"/>
+      <rect x="${cx-w/2+4}" y="${t+6}" width="9" height="5" rx="1" fill="#fff" stroke="#d26a5a" stroke-width=".9"/>
+      <path d="M${cx-4} ${t+6} C${cx+2} ${t+12} ${cx+10} ${t+24} ${cx+w/2-5} ${b-6}" fill="none" stroke="#cdd6d9" stroke-width="3" stroke-linecap="round"/>
+      <path d="M${cx-4} ${t+6} C${cx+2} ${t+12} ${cx+10} ${t+24} ${cx+w/2-5} ${b-6}" fill="none" stroke="#a7b4b8" stroke-width=".8" stroke-linecap="round"/>`;
+  } else if(d.v==="cv"){ // tarrina rectangular, tapa verde
+    const bw=w-5, lh=Math.max(5,h*.2);
+    body=`<path d="M${cx-w/2} ${t} L${cx-bw/2} ${b} L${cx+bw/2} ${b} L${cx+w/2} ${t}Z" fill="#9aa94a" stroke="#6f7c2c" stroke-width="1.2" stroke-linejoin="round"/>
+      <g stroke="#c2cd7a" stroke-width="1.6" stroke-linecap="round" opacity=".8"><path d="M${cx-w/2+5} ${t+lh+4} l6 -2 M${cx+w/2-12} ${t+lh+3} l6 2 M${cx-w/2+6} ${b-5} l5 -2 M${cx+w/2-11} ${b-6} l5 1"/></g>
+      <rect x="${cx-w*.3}" y="${t+lh+3}" width="${w*.6}" height="${Math.max(7,h*.42)}" rx="1.5" fill="#fbfaf4" stroke="#d9d4bf" stroke-width=".8"/>
+      <path d="M${cx-w*.2} ${t+lh+6.5} h${w*.4}" stroke="#56692b" stroke-width="1.4"/><path d="M${cx-w*.2} ${t+lh+9.5} h${w*.28}" stroke="#c9c2a8" stroke-width="1"/>
+      <rect x="${cx-w/2-2}" y="${t-lh+1}" width="${w+4}" height="${lh+1}" rx="2.2" fill="#1f6b35" stroke="#15502a" stroke-width="1"/>
+      <path d="M${cx-w/2} ${t-lh+1} L${cx-w/2+4} ${t-lh-3} L${cx+w/2-4} ${t-lh-3} L${cx+w/2} ${t-lh+1}Z" fill="#2f8a45" stroke="#15502a" stroke-width="1" stroke-linejoin="round"/>`;
+  } else { // tarrina redonda, tapa verde
+    const bw=w-6, lh=Math.max(5,h*.18), ry=Math.max(3,w*.07);
+    body=`<path d="M${cx-w/2} ${t} L${cx-bw/2} ${b} Q${cx} ${b+ry} ${cx+bw/2} ${b} L${cx+w/2} ${t}Z" fill="#b3ad57" stroke="#7d7a2e" stroke-width="1.2" stroke-linejoin="round"/>
+      <g fill="#d7d18a"><circle cx="${cx-w/2+6}" cy="${b-5}" r="2.3"/><circle cx="${cx+w/2-7}" cy="${b-4}" r="2.3"/><circle cx="${cx-w/2+5}" cy="${t+lh+5}" r="2"/></g>
+      <g fill="#f4efdc"><circle cx="${cx+w/2-6}" cy="${t+lh+5}" r="1.8"/></g><g fill="#d9722f"><circle cx="${cx-w/2+9}" cy="${b-9}" r="1.5"/></g>
+      <rect x="${cx-w*.3}" y="${t+lh+2}" width="${w*.6}" height="${Math.max(7,h*.45)}" rx="1.5" fill="#fbfaf4" stroke="#d9d4bf" stroke-width=".8"/>
+      <path d="M${cx-w*.18} ${t+lh+6} h${w*.36}" stroke="#56692b" stroke-width="1.4"/><path d="M${cx-w*.18} ${t+lh+9} h${w*.24}" stroke="#c9c2a8" stroke-width="1"/>
+      <path d="M${cx-w/2-2} ${t-lh+2} L${cx-w/2-2} ${t+1} Q${cx} ${t+ry+1} ${cx+w/2+2} ${t+1} L${cx+w/2+2} ${t-lh+2}Z" fill="#1f6b35" stroke="#15502a" stroke-width="1" stroke-linejoin="round"/>
+      <ellipse cx="${cx}" cy="${t-lh+2}" rx="${w/2+2}" ry="${ry}" fill="#2f8a45" stroke="#15502a" stroke-width="1"/>`;
+  }
+  return `<svg viewBox="0 0 100 75" aria-hidden="true"><rect width="100" height="75" fill="#f4efe3"/>${sombra}${body}</svg>`;
+}
 const COL = {
   g:{key:"imagenes", vk:"basesVistas",      n0:10, base:Object.keys(GILDAS).map(k=>({id:"d-"+k, dib:k}))},
   c:{key:"imgCubos", vk:"basesCubosVistas", n0:7,  base:CUBO_DEF.map(c=>({id:"c-"+c.id, cubo:c.id}))}
@@ -846,7 +898,7 @@ function syncBases(){ // los dibujos nuevos aparecen también en galerías ya to
 }
 function imgHTML(im){
   if(im.dib) return gildaSVG(im.dib);
-  if(im.cubo){ const d=cuboDef(im.cubo); return d ? cuboSVG(d.f,d.s) : ""; }
+  if(im.cubo){ const d=cuboDef(im.cubo); return d ? (d.v ? cuboReal(d) : cuboSVG(d.f,d.s)) : ""; }
   return `<img src="${esc(im.src)}" alt="">`;
 }
 const imgNombre = im => im.dib&&GILDAS[im.dib] ? GILDAS[im.dib].n : im.cubo&&cuboDef(im.cubo) ? cuboFull(cuboDef(im.cubo)) : "Tu imagen";
