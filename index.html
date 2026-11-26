@@ -834,8 +834,8 @@ function nuevaImagen(f, k, asignar){
     URL.revokeObjectURL(url);
     const im={id:"u-"+uid(), src:c.toDataURL("image/jpeg",.82)};
     S[COL[k].key]=[...lista(k), im];
-    if(asignar) galPoner(im.id);
-    guardarImgs("Imagen añadida");
+    if(asignar){ galPoner(im.id); cerrarPicker(); }
+    guardarImgs(asignar?"Foto puesta":"Imagen añadida");
   };
   img.onerror=()=>{ URL.revokeObjectURL(url); toast("No se pudo abrir esa imagen"); };
   img.src=url;
@@ -1122,7 +1122,7 @@ $("tList").addEventListener("change", e=>{
 });
 $("tList").addEventListener("click", e=>{
   const im=e.target.closest("[data-img]");
-  if(im){ abrirGaleria(S.tipos[+im.dataset.img]); return; }
+  if(im){ abrirGaleria("g", S.tipos[+im.dataset.img]); return; }
   const mv=e.target.closest(".up,.dn");
   if(mv){
     const i=+mv.dataset.i, j=mv.classList.contains("up")?i-1:i+1, l=S.tipos.slice();
