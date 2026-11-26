@@ -407,7 +407,7 @@ function toast(msg){ const t=$("toast"); t.textContent=msg; t.classList.add("sho
 
 /* ---------- almacenamiento: nube (db) o local ---------- */
 const LKEY = "gildas-v1";
-function loadLocal(){ try{ const d = JSON.parse(localStorage.getItem(LKEY)||"null"); if(d){ S.jornadas=d.jornadas||[]; S.tipos=d.tipos?.length?d.tipos:DEFAULT_TIPOS.slice(); S.activo=d.activo||null; S.pagos=d.pagos||{}; S.avisos=d.avisos||{}; S.dibujos=d.dibujos||{}; S.imagenes=Array.isArray(d.imagenes)?d.imagenes:null; } }catch(e){} }
+function loadLocal(){ try{ const d = JSON.parse(localStorage.getItem(LKEY)||"null"); if(d){ S.jornadas=d.jornadas||[]; S.tipos=d.tipos?.length?d.tipos:DEFAULT_TIPOS.slice(); S.activo=d.activo||null; S.pagos=d.pagos||{}; S.avisos=d.avisos||{}; S.dibujos=d.dibujos||{}; S.imagenes=Array.isArray(d.imagenes)?d.imagenes:null; S.basesVistas=d.basesVistas||null; } }catch(e){} }
 function saveLocal(){ try{ localStorage.setItem(LKEY, JSON.stringify(S)); }catch(e){} }
 
 async function retry(fn){ try{ return await fn(); }catch(e){ if(e && e.code==="unavailable"){ await new Promise(r=>setTimeout(r,500+Math.random()*800)); return fn(); } throw e; } }
@@ -445,7 +445,7 @@ const store = {
       S.jornadas=Object.values(map); Object.assign(S.pagos, data.pagos||{});
       if(data.tipos&&data.tipos.length) S.tipos=data.tipos;
       if(data.dibujos) Object.assign(S.dibujos, data.dibujos);
-      if(Array.isArray(data.imagenes)) S.imagenes=data.imagenes;
+      if(Array.isArray(data.imagenes)){ S.imagenes=data.imagenes; S.basesVistas=data.basesVistas||null; syncBases(); }
       saveLocal(); renderAll(); refreshSelects(); return;
     }
     let n=0, tot=data.jornadas.length+Object.keys(data.pagos||{}).length;
@@ -468,7 +468,7 @@ function setStatus(){
 
 async function initStore(){
   let ns = null;
-  if(!ns){ mode="local"; loadLocal(); setStatus(); renderTimer(); renderAll(); refreshSelects(); renderBanner(); listo("j"); listo("a"); return; }
+  if(!ns){ mode="local"; loadLocal(); syncBases(); setStatus(); renderTimer(); renderAll(); refreshSelects(); renderBanner(); listo("j"); listo("a"); return; }
   db = ns; mode="db"; setStatus();
   const slow = setTimeout(()=>{ $("status").textContent="Conectando…"; }, 10000);
   db.collection("jornadas").onSnapshot(snap=>{
@@ -637,7 +637,8 @@ const GILDAS = {
   "boq-tomate":     {n:"Boquerón con tomate seco", p:["ov","ts","bh","bh","ts","pi","on"]},
   "fuet":           {n:"Fuet y queso",           p:["sa","qu","pi","qu","sa"]},
   "pulpo":          {n:"Pulpo",                        p:["ov","pu","ts","ce","ts","pe","pu"]},
-  "huevo":          {n:"Huevo de codorniz",            p:["ov","pi","hu","ts","ov"]}
+  "huevo":          {n:"Huevo de codorniz",            p:["ov","pi","hu","ts","ov"]},
+  "atun-piparra":   {n:"Atún con piparra",             p:["ov","pi","at","pi","at","ov"]}
 };
 const SVG_CACHE = {};
 function gildaSVG(id){
@@ -671,6 +672,12 @@ function cuboSVG(forma, s, bg=true){
 }
 const IMG_BASE = Object.keys(GILDAS).map(k=>({id:"d-"+k, dib:k}));
 const imagenes = () => S.imagenes || IMG_BASE;
+function syncBases(){
+  if(!S.imagenes) return;
+  const vistas = S.basesVistas || IMG_BASE.slice(0,10).map(b=>b.id);
+  IMG_BASE.forEach(b=>{ if(!vistas.includes(b.id) && !S.imagenes.some(i=>i.id===b.id)) S.imagenes.push(b); });
+  S.basesVistas = IMG_BASE.map(b=>b.id); saveLocal();
+}
 const imgById = id => id ? imagenes().find(i=>i.id===id) : null;
 const imgHTML = im => im.dib ? gildaSVG(im.dib) : `<img src="${esc(im.src)}" alt="">`;
 const tipoPic = t => { const im=imgById(S.dibujos[t]); return im ? imgHTML(im) : ""; };
@@ -1256,7 +1263,7 @@ function renderAjustes(){
 $("mesesList").addEventListener("click", e=>{ const r=e.target.closest("[data-mes]"); if(!r) return; const [y,m]=r.dataset.mes.split("-").map(Number); abrirResumenMes(y,m-1); });
 
 async function hacerCopia(){
-  const data={app:"control-gildas", version:1, fecha:new Date().toISOString(), jornadas:S.jornadas, pagos:S.pagos, tipos:S.tipos, dibujos:S.dibujos, imagenes:S.imagenes};
+  const data={app:"control-gildas", version:1, fecha:new Date().toISOString(), jornadas:S.jornadas, pagos:S.pagos, tipos:S.tipos, dibujos:S.dibujos, imagenes:S.imagenes, basesVistas:S.basesVistas};
   const txt=JSON.stringify(data,null,1), name=`gildas-copia-${today()}.json`;
   const d=await getDownloads();
   if(d){
