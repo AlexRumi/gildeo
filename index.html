@@ -239,6 +239,104 @@ h3.gtit{margin:14px 0 8px}
 .tipo .ph input{display:none}
 .tipo input.tName{font-size:14.5px;padding:10px 8px}
 .qfoto{display:block;margin:-4px 0 10px 86px;color:var(--pepper)}
+/* tipos de gilda: lista nueva */
+.thead{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.thead h2{margin:0}
+.thead .btn{padding:9px 14px;font-size:14px}
+.thead .btn.on{background:var(--olive);color:#fff}
+.tlist{display:flex;flex-direction:column;gap:8px}
+.trow{display:flex;align-items:center;gap:12px;padding:8px 10px 8px 8px;border:1px solid var(--line);border-radius:14px;background:#fff;cursor:pointer;transition:border-color .15s,background .15s}
+.trow:active{background:#faf7ef}
+.trow:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.trow .im{width:60px;height:60px;border-radius:11px}
+.trow .im.vacia{font-size:10px;text-align:center;line-height:1.2}
+.trow .tx{flex:1;min-width:0}
+.trow .nm{font-weight:700;font-size:16px;line-height:1.25;overflow-wrap:anywhere}
+.trow .us{font-size:12.5px;color:var(--muted);margin-top:3px}
+.trow .chev{color:#c4bca8;font-size:26px;line-height:1;padding:0 2px}
+.trow.ordenando{cursor:default;background:#fffdf8}
+.trow .ord{display:flex;flex-direction:column;gap:6px;flex:none}
+.trow .ord button{width:48px;height:40px;border-radius:11px;border:0;background:var(--olive-soft);color:var(--olive);font-size:17px;cursor:pointer}
+.trow .ord button:disabled{opacity:.3;cursor:default}
+.trow.mov{animation:mov .6s}
+@keyframes mov{0%{background:var(--olive-soft);border-color:var(--olive)}}
+.tedit{display:flex;justify-content:center;margin:16px 0 14px}
+.tpic{border:0;background:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;font:600 14px "DM Sans";color:var(--olive)}
+.tpic .im{width:132px;height:132px;border-radius:18px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.tpic .im.vacia{font-size:13px}
+textarea.tname{resize:none;font-size:17px;font-weight:600;line-height:1.3}
+.chk{display:flex;gap:10px;align-items:flex-start;margin-top:12px;font-size:14px;color:var(--ink);cursor:pointer}
+.chk input{width:22px;height:22px;flex:none;margin:0;accent-color:var(--olive)}
+.trow .im.cu,.trow .im.cu.vacia{width:68px;height:51px}
+.tpic .im.cu{width:184px;height:138px}
+.trow.arch{background:#faf7ef}
+.trow.arch .im{filter:grayscale(.6);opacity:.75}
+.trow.arch .nm{color:var(--muted)}
+.archbtn{display:block;text-decoration:none;font-weight:600;font-size:14px;margin:14px 0 8px;padding:4px 0}
+#cList .tlist{margin-bottom:4px}
+#cList .ghead input:disabled{color:var(--ink)}
+.chint{font-size:12.5px;color:var(--muted);text-align:center;margin-top:6px}
+/* por semanas */
+.wks{display:flex;flex-direction:column}
+.wk,.wtot{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:4px 12px;align-items:center;padding:12px 4px;border-top:1px solid var(--line);cursor:pointer}
+.wk:first-child{border-top:0}
+.wk:active{background:#faf7ef}
+.wl b{display:block;font-size:15px;white-space:nowrap}
+.wl small{display:block;font-size:12.5px;color:var(--muted);margin-top:2px}
+.wh{font-family:Fraunces,serif;font-size:19px;white-space:nowrap;text-align:right}
+.wk.vacio .wh,.wk.vacio .wl b{color:#b8b09b}
+.wc{justify-self:end;font-size:13px;font-weight:700;padding:5px 9px;border-radius:99px;white-space:nowrap;min-width:64px;text-align:center}
+.wc.ok{background:var(--olive-soft);color:var(--olive)}
+.wc.pend{background:var(--pepper-soft);color:var(--pepper)}
+.wc.mute{color:var(--muted);font-weight:500;font-size:12.5px}
+.wtot{background:var(--olive);color:#fff;border-radius:14px;padding:14px;margin-top:8px;border:0;cursor:default}
+.wtot small{color:#e3e9cf;white-space:nowrap}
+.sheet .wh{font-size:17px}
+.wtot .wc{background:rgba(255,255,255,.18);color:#fff;font-size:14px}
+.rstats{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:8px;margin:0 0 6px}
+.rstats div{background:#f6f1e7;border-radius:12px;padding:10px}
+.rstats b{display:block;font-family:Fraunces,serif;font-size:20px;white-space:nowrap}
+.rstats span{font-size:12px;color:var(--muted)}
+.rstats .eur b{color:#a8761a}
+/* cubos por tipo */
+.tbs{display:flex;flex-direction:column}
+.tb{display:grid;grid-template-columns:48px minmax(0,1fr);gap:12px;align-items:center;padding:10px 0}
+.tb+.tb{border-top:1px solid var(--line)}
+.tb .im{width:48px;height:48px;border-radius:10px;align-self:start}
+.tb .im.gen svg{filter:grayscale(1);opacity:.3}
+.tbt{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.tbn{font-weight:600;font-size:15px;line-height:1.25;min-width:0}
+.tbv{font-family:Fraunces,serif;font-size:20px;white-space:nowrap;line-height:1}
+.tbv small{font-family:"DM Sans";font-size:12px;color:var(--muted)}
+.tb .track{height:7px;background:#f0eadc;border-radius:99px;overflow:hidden;margin-top:7px}
+.tb .fill{height:100%;background:var(--gold);border-radius:99px}
+.tb .det{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--muted);margin-top:6px}
+.tb .det span{display:inline-flex;align-items:center;gap:4px}
+.avh{display:block;width:100%;text-align:left;border:1px dashed #e2c98a;background:#fff8e8;border-radius:12px;padding:10px 12px;font:500 13.5px/1.35 "DM Sans";color:var(--ink);margin-bottom:8px;cursor:pointer}
+/* nombres antiguos */
+.huerf{background:#fff8e8;border:1px solid #ecd9a8;border-radius:14px;padding:12px;margin-bottom:14px}
+.huerf>b{display:block;font-size:15px}
+.huerf .sub{margin:4px 0 10px}
+.huerf .im.vacia{font-size:18px}
+.unir{font-weight:700;font-size:13px;color:var(--olive);white-space:nowrap}
+.day.wday{grid-template-columns:92px minmax(0,1fr) 16px;align-items:center;cursor:pointer;padding:14px 0}
+.day.wday:active{background:#faf7ef}
+.day.wday .chev{color:#c4bca8;font-size:24px;line-height:1}
+.dres{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:13px;color:var(--muted)}
+.thumbs{display:flex;flex:none}
+.thumbs .im{width:28px;height:28px;border-radius:8px;border:2px solid var(--card);margin-left:-8px;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+.thumbs .im:first-child{margin-left:0}
+.thumbs .im.gen svg,.dg .im.gen svg{filter:grayscale(1);opacity:.3}
+.thumbs .mas{margin-left:4px;font-size:12px;font-weight:700;color:var(--olive);align-self:center}
+.dgl{margin-bottom:4px}
+.dg{display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
+.dg:first-child{border-top:0}
+.dg .im{width:48px;height:48px;border-radius:10px}
+.dg .nm{font-weight:700;font-size:15px;line-height:1.25}
+.dg .cb{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--muted);margin-top:2px}
+.dg .n{font-family:Fraunces,serif;font-size:22px;color:var(--olive);white-space:nowrap}
+.tanda .ed{font-size:13px;font-weight:600;color:var(--olive);margin-top:6px}
+@media (max-width:520px){ .day.wday{grid-template-columns:78px minmax(0,1fr) 14px} }
 @media (max-width:520px){
   .stats{grid-template-columns:1fr 1fr}
   .day{grid-template-columns:78px 1fr}
@@ -370,17 +468,19 @@ h3.gtit{margin:14px 0 8px}
       <div id="mesesList"></div>
     </div>
     <div class="card">
-      <h2>Tipos de gilda</h2>
-      <p class="sub" style="margin-top:-6px">Son los que salen al añadir una gilda. Toca «Imagen» para ponerle su foto o dibujo.</p>
-      <div id="tList"></div>
+      <div class="thead"><h2>Tipos de gilda</h2><button class="btn light" id="tOrden" type="button">↕ Ordenar</button></div>
+      <p class="sub" id="tSub" style="margin:4px 0 12px"></p>
+      <div id="tHuerf"></div>
+      <div id="tList" class="tlist"></div>
+      <div id="tArch"></div>
       <div class="tipo" style="margin-top:14px">
-        <input id="tNew" placeholder="Nuevo tipo, p. ej. Gilda de Bonito">
+        <input id="tNew" placeholder="Nuevo tipo, p. ej. Pulpo">
         <button class="btn" id="tAdd">Añadir</button>
       </div>
     </div>
     <div class="card">
-      <h2>Tipos de cubo</h2>
-      <p class="sub" style="margin-top:-6px">Son los que salen en el paso 2 al añadir una gilda, agrupados. Toca «Imagen» para ponerle su foto o dibujo, o el nombre del grupo para cambiarlo.</p>
+      <div class="thead"><h2>Tipos de cubo</h2><button class="btn light" id="cOrden" type="button">↕ Ordenar</button></div>
+      <p class="sub" id="cSub" style="margin:4px 0 4px"></p>
       <div id="cList"></div>
       <div class="tipo" style="margin-top:14px">
         <input id="cGrupo" list="gruposDL" placeholder="Grupo" style="flex:0 0 36%" aria-label="Grupo del cubo nuevo">
@@ -417,7 +517,7 @@ const DIAS = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábad
 const DIAS_C = ["D","L","M","X","J","V","S"];
 const MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
 
-const S = { jornadas: [], tipos: DEFAULT_TIPOS.slice(), activo: null, pagos: {}, avisos: {}, dibujos: {}, imagenes: null, cubos: null, imgCubos: null };
+const S = { jornadas: [], tipos: DEFAULT_TIPOS.slice(), tiposArch: [], activo: null, pagos: {}, avisos: {}, dibujos: {}, imagenes: null, cubos: null, imgCubos: null };
 let db = null, mode = "loading";
 
 const $ = id => document.getElementById(id);
@@ -445,7 +545,7 @@ function toast(msg){ const t=$("toast"); t.textContent=msg; t.classList.add("sho
 
 /* ---------- almacenamiento: nube (db) o local ---------- */
 const LKEY = "gildas-v1";
-function loadLocal(){ try{ const d = JSON.parse(localStorage.getItem(LKEY)||"null"); if(d){ S.jornadas=d.jornadas||[]; S.tipos=d.tipos?.length?d.tipos:DEFAULT_TIPOS.slice(); S.activo=d.activo||null; S.pagos=d.pagos||{}; S.avisos=d.avisos||{}; S.dibujos=d.dibujos||{}; S.imagenes=Array.isArray(d.imagenes)?d.imagenes:null; S.basesVistas=d.basesVistas||null; S.cubos=Array.isArray(d.cubos)&&d.cubos.length&&d.cubos.every(c=>"grupo" in c)?d.cubos:null; S.imgCubos=Array.isArray(d.imgCubos)?d.imgCubos:null; S.basesCubosVistas=d.basesCubosVistas||null; } }catch(e){} }
+function loadLocal(){ try{ const d = JSON.parse(localStorage.getItem(LKEY)||"null"); if(d){ S.jornadas=d.jornadas||[]; S.tipos=d.tipos?.length?d.tipos:DEFAULT_TIPOS.slice(); S.tiposArch=Array.isArray(d.tiposArch)?d.tiposArch:[]; S.activo=d.activo||null; S.pagos=d.pagos||{}; S.avisos=d.avisos||{}; S.dibujos=d.dibujos||{}; S.imagenes=Array.isArray(d.imagenes)?d.imagenes:null; S.basesVistas=d.basesVistas||null; S.cubos=Array.isArray(d.cubos)&&d.cubos.length&&d.cubos.every(c=>"grupo" in c)?d.cubos:null; S.imgCubos=Array.isArray(d.imgCubos)?d.imgCubos:null; S.basesCubosVistas=d.basesCubosVistas||null; } }catch(e){} }
 function saveLocal(){ try{ localStorage.setItem(LKEY, JSON.stringify(S)); }catch(e){} }
 
 async function retry(fn){ try{ return await fn(); }catch(e){ if(e && e.code==="unavailable"){ await new Promise(r=>setTimeout(r,500+Math.random()*800)); return fn(); } throw e; } }
@@ -486,7 +586,8 @@ const store = {
       if(Array.isArray(data.imagenes)){ S.imagenes=data.imagenes; S.basesVistas=data.basesVistas||null; }
       if(Array.isArray(data.cubos)&&data.cubos.length&&data.cubos.every(c=>"grupo" in c)) S.cubos=data.cubos;
       if(Array.isArray(data.imgCubos)){ S.imgCubos=data.imgCubos; S.basesCubosVistas=data.basesCubosVistas||null; }
-      syncBases();
+      if(Array.isArray(data.tiposArch)) S.tiposArch=[...new Set([...(S.tiposArch||[]),...data.tiposArch])];
+      syncBases(); quitarGildaNombres();
       saveLocal(); renderAll(); refreshSelects(); return;
     }
     let n=0, tot=data.jornadas.length+Object.keys(data.pagos||{}).length;
@@ -509,7 +610,7 @@ function setStatus(){
 
 async function initStore(){
   let ns = null;
-  if(!ns){ mode="local"; loadLocal(); syncBases(); setStatus(); renderTimer(); renderAll(); refreshSelects(); renderBanner(); listo("j"); listo("a"); return; }
+  if(!ns){ mode="local"; loadLocal(); quitarGildaNombres(); syncBases(); setStatus(); renderTimer(); renderAll(); refreshSelects(); renderBanner(); listo("j"); listo("a"); return; }
   db = ns; mode="db"; setStatus();
   const slow = setTimeout(()=>{ $("status").textContent="Conectando…"; }, 10000);
   db.collection("jornadas").onSnapshot(snap=>{
@@ -994,15 +1095,26 @@ function tiposBars(list){
   list.forEach(j=>(j.gildas||[]).forEach(g=>{ const n=Number(g.cubos)||0, k=g.cubo?cuboId(g.cubo):""; map[g.tipo]=(map[g.tipo]||0)+n; (det[g.tipo]??={})[k]=(det[g.tipo][k]||0)+n; if(k&&g.cuboN) nom[k]=g.cuboN; }));
   const rows=Object.entries(map).sort((a,b)=>b[1]-a[1]);
   if(!rows.length) return `<div class="empty">Aún no hay gildas apuntadas en este periodo.</div>`;
-  const max=Math.max(...rows.map(r=>r[1]),1);
-  return rows.map(([t,c])=>{
+  const max=Math.max(...rows.map(r=>r[1]),1), conocidos=new Set([...S.tipos,...(S.tiposArch||[])]);
+  const nh=rows.filter(([t])=>!conocidos.has(t)).length;
+  const aviso = nh ? `<button class="avh" data-irhuerf>🔗 ${nh} nombre${nh==1?"":"s"} antiguo${nh==1?"":"s"} sin foto. <u>Únelo${nh==1?"":"s"} a su tipo</u> ›</button>` : "";
+  return aviso + `<div class="tbs">` + rows.map(([t,c])=>{
     const d=det[t]||{}, orden=cubosLista().map(x=>x.id), pos=k=>{ const i=orden.indexOf(k); return i<0?99:i; };
     const ks=Object.keys(d).filter(k=>k).sort((a,b)=>pos(a)-pos(b)), tiene=ks.length>0;
     const parts=ks.map(k=>{ const x=cuboDe(k); return `<span>${icono(x)}${fmtCubos(d[k])} ${esc((cuboFull(x)||nom[k]||"cubo").toLowerCase())}</span>`; });
     if(tiene && d[""]) parts.push(`<span>${fmtCubos(d[""])} sin tamaño</span>`);
-    return `<div class="bar"><span class="tn">${tipoPic(t)?`<span class="im">${tipoPic(t)}</span>`:""}${esc(t)}</span><b>${fmtCubos(c)} cubo${c==1?"":"s"}</b><div class="track"><div class="fill" style="width:${c/max*100}%"></div></div>${tiene?`<div class="det">${parts.join("")}</div>`:""}</div>`;
-  }).join("");
+    const pic=tipoPic(t);
+    return `<div class="tb"><span class="im${pic?"":" gen"}">${pic||gildaSVG("_")}</span><div class="tbm">
+      <div class="tbt"><span class="tbn">${esc(t)}</span><span class="tbv">${fmtCubos(c)}<small> cubo${c==1?"":"s"}</small></span></div>
+      <div class="track"><div class="fill" style="width:${Math.max(4,c/max*100)}%"></div></div>
+      ${tiene?`<div class="det">${parts.join("")}</div>`:""}</div></div>`;
+  }).join("") + `</div>`;
 }
+document.addEventListener("click", e=>{
+  if(!e.target.closest("[data-irhuerf]")) return;
+  cerrarDia(); tOrden=false; showView("tipos");
+  setTimeout(()=>{ const h=$("tHuerf"); if(h) window.scrollTo({top:h.getBoundingClientRect().top+window.scrollY-80, behavior:"smooth"}); },60);
+});
 
 /* ---------- HOY ---------- */
 function renderHoy(){
@@ -1014,6 +1126,8 @@ function renderHoy(){
 /* ---------- SEMANA ---------- */
 let wStart = mondayOf(today());
 $("wPrev").onclick=()=>{ wStart=addDays(wStart,-7); renderSemana(); };
+$("wDays").addEventListener("click", e=>{ const r=e.target.closest("[data-dia]"); if(r) abrirDia(r.dataset.dia); });
+$("wDays").addEventListener("keydown", e=>{ if((e.key==="Enter"||e.key===" ")&&e.target.matches("[data-dia]")){ e.preventDefault(); abrirDia(e.target.dataset.dia); } });
 $("wNext").onclick=()=>{ wStart=addDays(wStart,7); renderSemana(); };
 function rangoTxt(a,b,corto){ const A=parse(a),B=parse(b); return A.getMonth()===B.getMonth() ? `${A.getDate()} – ${B.getDate()} ${corto?MESES[B.getMonth()].slice(0,3):MESES[B.getMonth()]}` : `${A.getDate()} ${MESES[A.getMonth()].slice(0,3)} – ${B.getDate()} ${MESES[B.getMonth()].slice(0,3)}`; }
 function renderSemana(){
@@ -1028,11 +1142,12 @@ function renderSemana(){
   for(let i=0;i<7;i++){
     const d=addDays(wStart,i), l=byDay(d), m=sumMin(l);
     const sab = i===6 && !l.length;
-    h+=`<div class="day${l.length?"":" off"}${sab?" pay":""}${d===today()?" today":""}">
+    const tipos=[...new Set(l.flatMap(j=>(j.gildas||[]).map(g=>g.tipo)))], cb=sumCubos(l);
+    h+=`<div class="day wday${l.length?"":" off"}${sab?" pay":""}${d===today()?" today":""}" data-dia="${d}" role="button" tabindex="0">
       <div><div class="dn">${DIAS[i]}</div><div class="dd">${parse(d).getDate()} ${MESES[parse(d).getMonth()].slice(0,3)}</div></div>
-      <div><div class="dh">${l.length?fmt(m):(sab?"💶 Día de cobro":"Sin registro")}</div>
-        ${l.map(j=>`<div class="mini" data-id="${j.id}">${l.length>1?`${j.inicio?j.inicio+"–"+j.fin:"manual"} · ${fmt(j.minutos)}`:""}${chips(j)}</div>`).join("")}
-      </div></div>`;
+      <div class="dmain"><div class="dh">${l.length?fmt(m):(sab?"💶 Día de cobro":"Sin registro")}</div>
+        ${l.length?`<div class="dres">${tipos.length?`<span class="thumbs">${tipos.slice(0,4).map(t=>`<span class="im${tipoPic(t)?"":" gen"}">${tipoPic(t)||gildaSVG("_")}</span>`).join("")}${tipos.length>4?`<span class="mas">+${tipos.length-4}</span>`:""}</span>`:""}<span>${cb?`${fmtCubos(cb)} cubo${cb==1?"":"s"}${l.length>1?` · ${l.length} tandas`:""}`:"Sin gildas apuntadas"}</span></div>`:""}
+      </div><span class="chev" aria-hidden="true">›</span></div>`;
   }
   $("wDays").innerHTML=h;
   $("wTipos").innerHTML=tiposBars(list);
@@ -1060,21 +1175,23 @@ function renderMes(){
     c+=`<div class="c${m?" w":""}${pg?" paid":""}${s===today()?" today":""}" data-day="${s}"><span>${d}</span>${m?"<b>✓</b>":pg?"<b>💶</b>":""}</div>`;
   }
   $("mCal").innerHTML=c;
-  // semanas
-  let w=mondayOf(first), rows="";
-  while(w<=last){
-    const e=addDays(w,6), a=w<first?first:w, b=e>last?last:e;
-    const l=list.filter(j=>j.fecha>=a&&j.fecha<=b);
-    rows+=`<tr data-week="${w}" style="cursor:pointer"><td>${rangoTxt(a,b,true)}</td><td class="n">${new Set(l.map(j=>j.fecha)).size}</td><td class="n">${fmt(sumMin(l))}</td><td class="n">${fmtCubos(sumCubos(l))}</td><td class="n">${S.pagos[w]&&S.pagos[w].pagado&&e<=last?fmtEur(S.pagos[w].importe)+" ✓":"–"}</td></tr>`;
-    w=addDays(w,7);
-  }
-  rows+=`<tr class="tot"><td>Total</td><td class="n">${dias}</td><td class="n">${fmt(min)}</td><td class="n">${fmtCubos(sumCubos(list))}</td><td class="n">${fmtEur(cobrado)}</td></tr>`;
-  $("mWeeks").innerHTML=`<table><tr><th>Semana</th><th class="n">Días</th><th class="n">Horas</th><th class="n">Cubos</th><th class="n">Cobrado</th></tr>${rows}</table><p class="sub">El cobro de cada semana es el del sábado en que termina.</p>`;
+  $("mWeeks").innerHTML=semanasHTML(datosMes(mCur.y,mCur.m));
   $("mResumen").textContent = `📋 Resumen de ${MESES[mCur.m]}`;
   $("mTipos").innerHTML=tiposBars(list);
 }
 $("mResumen").onclick = ()=> abrirResumenMes(mCur.y, mCur.m);
 $("mCal").addEventListener("click", e=>{ const c=e.target.closest("[data-day]"); if(c) abrirDia(c.dataset.day); });
+function gildasDiaHTML(l){
+  const m={}, ordT=t=>{ const i=S.tipos.indexOf(t); return i<0?999:i; }, ordC=id=>{ const i=cubosLista().findIndex(c=>c.id===id); return i<0?999:i; };
+  l.forEach(j=>(j.gildas||[]).forEach(g=>{ const c=g.cubo?cuboId(g.cubo):"", k=g.tipo+"|"+c; (m[k]??={tipo:g.tipo, cubo:c, cuboN:g.cuboN, n:0}).n+=Number(g.cubos)||0; }));
+  const rows=Object.values(m).sort((a,b)=>ordT(a.tipo)-ordT(b.tipo)||ordC(a.cubo)-ordC(b.cubo));
+  if(!rows.length) return "";
+  return `<h3>Gildas</h3><div class="dgl">${rows.map(g=>{ const c=cuboDe(g.cubo), pic=tipoPic(g.tipo), cn=cuboNombre(g);
+    return `<div class="dg"><span class="im${pic?"":" gen"}">${pic||gildaSVG("_")}</span><div class="tx"><div class="nm">${esc(g.tipo)}</div><div class="cb">${cn?`${icono(c)}${esc(cn)}`:"Sin cubo"}</div></div><div class="n">× ${fmtCubos(g.n)}</div></div>`; }).join("")}</div>`;
+}
+function tandaHTML(j){
+  return `<div class="entry tanda" data-id="${j.id}"><div class="top"><span class="dur">${fmt(j.minutos)}</span><span class="rng">${j.inicio?`${j.inicio} – ${j.fin}${j.pausa?` · ${j.pausa}min descanso`:""}`:"duración manual"}</span></div>${j.nota?`<div class="note">${esc(j.nota)}</div>`:""}<div class="ed">✎ Editar</div></div>`;
+}
 function abrirDia(d){
   const l=byDay(d), m=sumMin(l), cb=sumCubos(l), dt=parse(d), wd=dt.getDay();
   $("daySheet").innerHTML = `
@@ -1084,11 +1201,13 @@ function abrirDia(d){
     </div>
     ${l.length ? `
       <div class="big">${fmt(m)}</div>
-      <div class="sm">${l.length>1?`${l.length} tandas · `:""}${fmtCubos(cb)} cubo${cb==1?"":"s"}</div>
-      ${l.map(entryHTML).join("")}
+      <div class="sm">${cb?`${fmtCubos(cb)} cubo${cb==1?"":"s"}`:"Sin gildas apuntadas"}${l.length>1?` · ${l.length} tandas`:""}</div>
+      ${gildasDiaHTML(l)}
+      <h3>${l.length>1?"Tandas":"Jornada"}</h3>
+      ${l.map(tandaHTML).join("")}
     ` : `<div class="big" style="color:#c4bca8;font-size:30px">${wd===6?"💶 Día de cobro":"Nada que hacer"}</div><div class="sm">No hay nada apuntado este día.</div>`}
     <div class="actions">
-      <button class="btn light" id="dWeek">Ver semana</button>
+      ${view==="semana"?"":`<button class="btn light" id="dWeek">Ver semana</button>`}
       <button class="btn" id="dAdd">+ Añadir</button>
     </div>
     ${l.length?`<button class="link" id="dDel" style="display:block;margin:14px auto 0;color:var(--pepper)">🗑 Borrar todo el día</button>`:""}`;
@@ -1100,95 +1219,270 @@ function abrirDia(d){
     if(!arm){ arm=true; dd.textContent=`¿Seguro? Toca otra vez para borrar ${l.length===1?"la jornada":`las ${l.length} jornadas`}`; return; }
     try{ await store.deleteMany(l.map(j=>j.id)); cerrarDia(); toast("Día borrado"); }catch(e){ failMsg(e); }
   };
-  $("dWeek").onclick = ()=>{ cerrarDia(); wStart=mondayOf(d); showView("semana"); };
+  if($("dWeek")) $("dWeek").onclick = ()=>{ cerrarDia(); wStart=mondayOf(d); showView("semana"); };
   $("dAdd").onclick = ()=>{ cerrarDia(); resetForm(); $("fFecha").value=d; showView("registrar"); setTimeout(()=>$("formCard").scrollIntoView({behavior:"smooth"}),50); };
 }
-function cerrarDia(){ $("dayOv").classList.add("hide"); document.body.style.overflow=""; }
+function cerrarDia(){ $("dayOv").onclick=null; $("daySheet").scrollTop=0; $("dayOv").classList.add("hide"); document.body.style.overflow=""; }
 $("dayOv").addEventListener("click", e=>{ if(e.target.id==="dayOv") cerrarDia(); });
 document.addEventListener("keydown", e=>{ if(e.key==="Escape") cerrarDia(); });
+$("mWeeks").addEventListener("keydown", e=>{ if((e.key==="Enter"||e.key===" ")&&e.target.matches("[data-week]")){ e.preventDefault(); e.target.click(); } });
 $("mWeeks").addEventListener("click", e=>{ const r=e.target.closest("[data-week]"); if(r){ wStart=r.dataset.week; showView("semana"); } });
 
 /* ---------- TIPOS ---------- */
-function renderTipos(){
-  const n=S.tipos.length;
-  $("tList").innerHTML = S.tipos.map((t,i)=>`<div class="tipo"><div class="mv"><button class="up" data-i="${i}" aria-label="Subir" ${i===0?"disabled":""}>▲</button><button class="dn" data-i="${i}" aria-label="Bajar" ${i===n-1?"disabled":""}>▼</button></div><button class="ph" data-img="${i}" aria-label="Elegir imagen">${tipoPic(t)?`<span class="im" style="display:block">${tipoPic(t)}</span><i>✎</i>`:`<span class="im vacia">Imagen</span><i>+</i>`}</button><input value="${esc(t)}" data-i="${i}" class="tName" aria-label="Nombre del tipo"><button class="x" data-i="${i}" aria-label="Quitar tipo" style="width:44px">×</button></div>`).join("");
+let tOrden=false, tMov=null, tVerArch=false;
+const norm = s => String(s??"").replace(/\s+/g," ").trim();
+// "Gilda de Pulpo" → "Pulpo", "Gilda Clásica de Anchoa" → "Clásica de Anchoa"
+const sinPrefijo = t => { if(typeof t!=="string") return t; const v=t.replace(/^\s*gilda\s+(?:de\s+)?/i,"").trim(); return v && v!==t.trim() ? v[0].toUpperCase()+v.slice(1) : t; };
+function quitarGildaNombres(){
+  let cambio=false; const ch=t=>{ const v=sinPrefijo(t); if(v!==t) cambio=true; return v; };
+  S.tipos=[...new Set(S.tipos.map(ch))];
+  S.tiposArch=[...new Set((S.tiposArch||[]).map(ch))].filter(t=>!S.tipos.includes(t));
+  const d={}; for(const k in S.dibujos){ const v=ch(k); if(!(v in d) || v===k) d[v]=S.dibujos[k]; } S.dibujos=d;
+  S.jornadas.forEach(j=>(j.gildas||[]).forEach(g=>{ g.tipo=ch(g.tipo); }));
+  if(cambio) saveLocal();
 }
-$("tList").addEventListener("change", e=>{
-  if(!e.target.classList.contains("tName")) return;
-  const v=e.target.value.trim(), l=S.tipos.slice(), old=l[+e.target.dataset.i];
-  if(!v){ renderTipos(); return; }
-  if(S.dibujos[old] && v!==old){ S.dibujos[v]=S.dibujos[old]; delete S.dibujos[old]; }
-  l[+e.target.dataset.i]=v; store.saveTipos(l).then(()=>toast("Tipo actualizado")).catch(failMsg);
-});
-$("tList").addEventListener("click", e=>{
-  const im=e.target.closest("[data-img]");
-  if(im){ abrirGaleria("g", S.tipos[+im.dataset.img]); return; }
+function usoTipo(t){ let j=0,c=0; S.jornadas.forEach(x=>{ const gs=(x.gildas||[]).filter(g=>g.tipo===t); if(gs.length){ j++; gs.forEach(g=>c+=Number(g.cubos)||0); } }); return {j,c}; }
+function usoTxt(u){ return u.j ? `${u.j} jornada${u.j==1?"":"s"} · ${fmtCubos(u.c)} cubo${u.c==1?"":"s"}` : "Sin usar todavía"; }
+function filaTipo(t,i,arch,n){
+  const pic=tipoPic(t), ord=tOrden&&!arch;
+  return `<div class="trow${ord?" ordenando":""}${arch?" arch":""}${!arch&&tMov===i?" mov":""}"${ord?"":` data-t="${i}"${arch?' data-arch="1"':""} role="button" tabindex="0"`}>
+    <span class="im${pic?"":" vacia"}">${pic||"Sin<br>imagen"}</span>
+    <div class="tx"><div class="nm">${esc(t)}</div><div class="us">${usoTxt(usoTipo(t))}</div></div>
+    ${ord?`<div class="ord"><button class="up" data-i="${i}" aria-label="Subir ${esc(t)}" ${i===0?"disabled":""}>▲</button><button class="dn" data-i="${i}" aria-label="Bajar ${esc(t)}" ${i===n-1?"disabled":""}>▼</button></div>`:`<span class="chev" aria-hidden="true">›</span>`}
+  </div>`;
+}
+function renderTipos(){
+  const n=S.tipos.length, A=S.tiposArch||[];
+  $("tOrden").textContent = tOrden ? "✓ Listo" : "↕ Ordenar";
+  $("tOrden").classList.toggle("on", tOrden);
+  $("tSub").textContent = tOrden ? "Usa ▲ ▼ para cambiar el orden en que salen al añadir una gilda." : "Toca un tipo para cambiarle el nombre o la imagen, o archivarlo.";
+  $("tList").innerHTML = S.tipos.map((t,i)=>filaTipo(t,i,false,n)).join("");
+  $("tArch").innerHTML = A.length && !tOrden ? `<button class="link archbtn" id="tArchBtn">${tVerArch?"▾":"▸"} Archivados (${A.length})</button>
+    ${tVerArch?`<p class="sub" style="margin:0 0 8px">No salen al añadir una gilda, pero siguen en tus resúmenes. Toca uno para recuperarlo.</p><div class="tlist">${A.map((t,i)=>filaTipo(t,i,true)).join("")}</div>`:""}` : "";
+  tMov=null; renderHuerf();
+}
+$("tOrden").onclick=()=>{ tOrden=!tOrden; renderTipos(); };
+function clickTipos(e){
+  if(e.target.closest("#tArchBtn")){ tVerArch=!tVerArch; renderTipos(); return; }
   const mv=e.target.closest(".up,.dn");
   if(mv){
     const i=+mv.dataset.i, j=mv.classList.contains("up")?i-1:i+1, l=S.tipos.slice();
     if(j<0||j>=l.length) return;
-    [l[i],l[j]]=[l[j],l[i]];
+    [l[i],l[j]]=[l[j],l[i]]; tMov=j;
     store.saveTipos(l).catch(failMsg); return;
   }
-  if(!e.target.classList.contains("x")) return;
-  const l=S.tipos.slice(); const [quitado]=l.splice(+e.target.dataset.i,1);
-  if(!l.length) return toast("Deja al menos un tipo");
-  delete S.dibujos[quitado];
-  store.saveTipos(l).catch(failMsg);
+  const r=e.target.closest("[data-t]"); if(r) editarTipo(+r.dataset.t, !!r.dataset.arch);
+}
+function teclaFila(e, sel, fn){ if((e.key==="Enter"||e.key===" ") && e.target.matches(sel)){ e.preventDefault(); fn(e.target); } }
+["tList","tArch"].forEach(id=>{
+  $(id).addEventListener("click", clickTipos);
+  $(id).addEventListener("keydown", e=>teclaFila(e,"[data-t]",el=>editarTipo(+el.dataset.t, !!el.dataset.arch)));
 });
+function guardarListaTipos(arch, l){
+  if(arch){ S.tiposArch=l; saveLocal(); renderAll(); return Promise.resolve(); }
+  return store.saveTipos(l);
+}
+function abrirHoja(html){ $("daySheet").innerHTML=html; $("dayOv").classList.remove("hide"); document.body.style.overflow="hidden"; $("daySheet").scrollTop=0; }
+function armarBorrado(btn, txt, nota, fn){
+  let arm=false;
+  btn.onclick=()=>{
+    if(!arm){ arm=true; btn.textContent=txt; if(nota) btn.insertAdjacentHTML("afterend",`<div class="chint">${nota}</div>`); return; }
+    fn();
+  };
+}
+function editarTipo(i, arch){
+  const A=S.tiposArch||[], L=arch?A:S.tipos, t=L[i]; if(t==null) return;
+  const u=usoTipo(t), pic=tipoPic(t);
+  abrirHoja(`
+    <div class="hd"><div><div class="dt">${arch?"Tipo archivado":"Tipo de gilda"}</div><h2 style="margin:2px 0 0">Editar</h2></div><button class="close" id="dClose" aria-label="Cerrar">×</button></div>
+    <div class="tedit"><button class="tpic" id="teImg" type="button">${pic?`<span class="im">${pic}</span>`:`<span class="im vacia">Sin imagen</span>`}<span>${pic?"✎ Cambiar imagen":"+ Poner imagen"}</span></button></div>
+    <label for="teName">Nombre</label>
+    <textarea id="teName" rows="2" class="tname" enterkeyhint="done">${esc(t)}</textarea>
+    ${u.j?`<label class="chk"><input type="checkbox" id="teJ" checked><span>Si le cambias el nombre, cambiarlo también en las <b>${u.j} jornada${u.j==1?"":"s"}</b> ya apuntadas (así no se separa en los resúmenes)</span></label>`:""}
+    <div class="sub" style="margin-top:10px">${u.j?`Llevas ${fmtCubos(u.c)} cubo${u.c==1?"":"s"} de esta gilda en ${u.j} jornada${u.j==1?"":"s"}.`:"Aún no la has usado en ninguna jornada."}</div>
+    <div class="actions"><button class="btn" id="teOk">Guardar</button><button class="btn ghost" id="teX">Cancelar</button></div>
+    ${arch
+      ? `<div class="actions" style="margin-top:8px"><button class="btn light" id="teRec" style="flex:1">↩ Volver a la lista</button></div>
+         <button class="link" id="teDel" style="display:block;margin:16px auto 0;color:var(--pepper)">🗑 Borrar del todo</button>`
+      : u.j
+        ? `<button class="link" id="teArch" style="display:block;margin:18px auto 0">📦 Archivar (ya no la hago)</button><div class="chint">Deja de salir al añadir una gilda, pero no se pierde de tus resúmenes.</div>`
+        : `<button class="link" id="teDel" style="display:block;margin:18px auto 0;color:var(--pepper)">🗑 Borrar este tipo</button>`}`);
+  $("dClose").onclick = $("teX").onclick = cerrarDia;
+  $("teImg").onclick = ()=>{ cerrarDia(); abrirGaleria("g", t); };
+  $("teName").addEventListener("keydown", e=>{ if(e.key==="Enter"){ e.preventDefault(); $("teOk").click(); } });
+  $("teOk").onclick = async ()=>{
+    const v=sinPrefijo(norm($("teName").value));
+    if(!v) return toast("Ponle un nombre");
+    if(v===t) return cerrarDia();
+    if(S.tipos.includes(v)||A.includes(v)) return toast("Ese tipo ya existe");
+    const l=L.slice(); l[i]=v;
+    if(S.dibujos[t]){ S.dibujos[v]=S.dibujos[t]; delete S.dibujos[t]; }
+    const enJ = $("teJ") && $("teJ").checked;
+    $("teOk").disabled=true;
+    try{
+      await guardarListaTipos(arch, l);
+      if(enJ){
+        const afect=S.jornadas.filter(j=>(j.gildas||[]).some(g=>g.tipo===t));
+        for(const j of afect) await store.saveJornada({...j, gildas:j.gildas.map(g=>g.tipo===t?{...g, tipo:v}:g)});
+      }
+      F.gildas.forEach(g=>{ if(g.tipo===t) g.tipo=v; }); renderGRows();
+      cerrarDia(); toast("Tipo actualizado");
+    }catch(e){ failMsg(e); $("teOk").disabled=false; }
+  };
+  if($("teArch")) $("teArch").onclick = ()=>{
+    if(S.tipos.length<=1) return toast("Deja al menos un tipo en la lista");
+    S.tiposArch=[...A, t];
+    store.saveTipos(S.tipos.filter(x=>x!==t)).then(()=>{ cerrarDia(); tVerArch=false; toast("Archivado · lo tienes en «Archivados»"); }).catch(failMsg);
+  };
+  if($("teRec")) $("teRec").onclick = ()=>{
+    S.tiposArch=A.filter(x=>x!==t); tMov=S.tipos.length;
+    store.saveTipos([...S.tipos, t]).then(()=>{ cerrarDia(); toast("Vuelve a estar en la lista"); }).catch(failMsg);
+  };
+  if($("teDel")) armarBorrado($("teDel"), "¿Seguro? Toca otra vez para borrarlo", u.j?"Las jornadas ya apuntadas no se borran.":"", ()=>{
+    if(!arch && S.tipos.length<=1) return toast("Deja al menos un tipo");
+    delete S.dibujos[t];
+    guardarListaTipos(arch, L.filter(x=>x!==t)).then(()=>{ cerrarDia(); toast("Tipo borrado"); }).catch(failMsg);
+  });
+}
 $("tAdd").onclick=()=>{
-  const v=$("tNew").value.trim(); if(!v) return;
+  const v=sinPrefijo(norm($("tNew").value)); if(!v) return toast("Escribe el nombre del tipo");
   if(S.tipos.includes(v)) return toast("Ese tipo ya existe");
-  store.saveTipos([...S.tipos,v]).then(()=>{ $("tNew").value=""; toast("Tipo añadido"); }).catch(failMsg);
+  if((S.tiposArch||[]).includes(v)){ tVerArch=true; renderTipos(); return toast("Ese tipo está en «Archivados»: recupéralo desde ahí"); }
+  tMov=S.tipos.length;
+  store.saveTipos([...S.tipos,v]).then(()=>{ $("tNew").value=""; toast("Tipo añadido · tócalo para ponerle imagen"); }).catch(failMsg);
 };
 $("tNew").addEventListener("keydown", e=>{ if(e.key==="Enter") $("tAdd").click(); });
 
+/* ---------- nombres antiguos (en jornadas pero no en la lista) ---------- */
+let hList=[];
+function huerfanos(){ const k=new Set([...S.tipos,...(S.tiposArch||[])]), m={}; S.jornadas.forEach(j=>(j.gildas||[]).forEach(g=>{ if(g.tipo&&!k.has(g.tipo)) m[g.tipo]=1; })); return Object.keys(m).sort((a,b)=>a.localeCompare(b,"es")); }
+function renderHuerf(){
+  hList = tOrden ? [] : huerfanos();
+  $("tHuerf").innerHTML = hList.length ? `<div class="huerf"><b>🔗 Nombres antiguos (${hList.length})</b>
+    <p class="sub">Tus jornadas tienen gildas apuntadas con nombres que ya no están en la lista; por eso salen sin foto y separadas en los resúmenes. Toca cada uno para unirlo a su tipo.</p>
+    <div class="tlist">${hList.map((t,i)=>`<div class="trow" data-h="${i}" role="button" tabindex="0"><span class="im vacia">?</span><div class="tx"><div class="nm">${esc(t)}</div><div class="us">${usoTxt(usoTipo(t))}</div></div><span class="unir">Unir ›</span></div>`).join("")}</div></div>` : "";
+}
+$("tHuerf").addEventListener("click", e=>{ const r=e.target.closest("[data-h]"); if(r) abrirUnir(hList[+r.dataset.h]); });
+$("tHuerf").addEventListener("keydown", e=>teclaFila(e,"[data-h]",el=>abrirUnir(hList[+el.dataset.h])));
+function cuboPedido(){ const l=cubosLista(), es=c=>/pedido/i.test((c.grupo||"")+" "+c.nombre); return l.find(c=>es(c)&&/med/i.test(c.nombre)) || l.find(es); }
+function abrirUnir(viejo){
+  if(!viejo) return;
+  const u=usoTipo(viejo), cPed=/pedido/i.test(viejo)?cuboPedido():null; let sel=null;
+  abrirHoja(`
+    <div class="hd"><div><div class="dt">Nombre antiguo</div><h2 style="margin:2px 0 0">${esc(viejo)}</h2></div><button class="close" id="dClose" aria-label="Cerrar">×</button></div>
+    <p class="sub" style="margin:8px 0 12px">Sale en ${usoTxt(u)}. ¿A qué tipo de tu lista corresponde? Esas jornadas pasarán a ese nombre.</p>
+    <div class="pgrid" id="uGrid">${S.tipos.map((t,i)=>`<button class="opt${tipoPic(t)?"":" solo"}" data-u="${i}">${tipoPic(t)?`<div class="pic">${tipoPic(t)}</div>`:""}${esc(t)}</button>`).join("")}</div>
+    ${cPed?`<label class="chk"><input type="checkbox" id="uPed" checked><span>Apuntar esos cubos como <b>${esc(cuboFull(cPed).toLowerCase())}</b> (los que no tenían cubo), para no perder que eran de pedido</span></label>`:""}
+    <div class="pfoot"><button class="btn" id="uOk" style="width:100%;padding:15px;font-size:16px" disabled>Elige un tipo</button>
+      <button class="link" id="uNuevo" style="display:block;margin:10px auto 0">O añadir «${esc(viejo)}» como tipo nuevo</button></div>`);
+  $("dClose").onclick=cerrarDia;
+  $("uGrid").onclick=e=>{
+    const b=e.target.closest("[data-u]"); if(!b) return;
+    sel=S.tipos[+b.dataset.u];
+    $("uGrid").querySelectorAll(".opt").forEach(o=>o.classList.toggle("on", o===b));
+    $("uOk").disabled=false; $("uOk").textContent=`Unir con «${sel}»`;
+  };
+  $("uOk").onclick=async()=>{
+    if(!sel) return;
+    const cub = $("uPed") && $("uPed").checked ? cPed : null;
+    $("uOk").disabled=true;
+    try{ const n=await unirNombre(viejo, sel, cub); cerrarDia(); toast(`Unido: ${n} jornada${n==1?"":"s"} → ${sel}`); }
+    catch(e){ failMsg(e); $("uOk").disabled=false; }
+  };
+  $("uNuevo").onclick=()=>{ tMov=S.tipos.length; store.saveTipos([...S.tipos, viejo]).then(()=>{ cerrarDia(); toast("Añadido a la lista · ponle imagen"); }).catch(failMsg); };
+}
+async function unirNombre(viejo, nuevo, cub){
+  const afect=S.jornadas.filter(j=>(j.gildas||[]).some(g=>g.tipo===viejo));
+  for(const j of afect){
+    const gs=[];
+    j.gildas.forEach(g0=>{
+      let g={...g0};
+      if(g.tipo===viejo){ g.tipo=nuevo; if(cub && !g.cubo){ g.cubo=cub.id; g.cuboN=cuboFull(cub); } }
+      const ex=gs.find(x=>x.tipo===g.tipo && cuboId(x.cubo||"")===cuboId(g.cubo||""));
+      if(ex) ex.cubos=(Number(ex.cubos)||0)+(Number(g.cubos)||0); else gs.push(g);
+    });
+    await store.saveJornada({...j, gildas:gs});
+  }
+  delete S.dibujos[viejo]; saveLocal();
+  return afect.length;
+}
+
 /* ---------- TIPOS DE CUBO ---------- */
+let cOrden=false, cMov=null;
 function saveCubos(l, msg){ S.cubos=l; saveLocal(); renderAll(); refreshSelects(); if(msg) toast(msg); }
+function usoCubo(id){ let j=0,c=0; S.jornadas.forEach(x=>{ const gs=(x.gildas||[]).filter(g=>g.cubo&&cuboId(g.cubo)===id); if(gs.length){ j++; gs.forEach(g=>c+=Number(g.cubos)||0); } }); return {j,c}; }
 function renderCubos(){
   const l=cubosLista(), gs=gruposCubos(l);
-  $("cList").innerHTML = gs.map(g=>`<div class="ghead"><input class="gName" data-g="${esc(g.n)}" value="${esc(g.n)}" placeholder="Sin grupo" aria-label="Nombre del grupo"></div>` + g.l.map(c=>{
-    const i=l.indexOf(c), arriba=i>0&&(l[i-1].grupo||"")===g.n, abajo=i<l.length-1&&(l[i+1].grupo||"")===g.n;
-    return `<div class="tipo"><div class="mv"><button class="up" data-i="${i}" aria-label="Subir" ${arriba?"":"disabled"}>▲</button><button class="dn" data-i="${i}" aria-label="Bajar" ${abajo?"":"disabled"}>▼</button></div><button class="ph" data-cimg="${i}" aria-label="Elegir imagen">${cuboPic(c)?`<span class="im" style="display:block">${cuboPic(c)}</span><i>✎</i>`:`<span class="im vacia">Imagen</span><i>+</i>`}</button><input value="${esc(c.nombre)}" data-i="${i}" class="tName cName" aria-label="Tamaño del cubo"><button class="x" data-i="${i}" aria-label="Quitar cubo" style="width:44px">×</button></div>`;
-  }).join("")).join("");
+  $("cOrden").textContent = cOrden ? "✓ Listo" : "↕ Ordenar";
+  $("cOrden").classList.toggle("on", cOrden);
+  $("cSub").textContent = cOrden ? "Usa ▲ ▼ para cambiar el orden dentro de cada grupo." : "Toca un cubo para cambiarle el nombre, el grupo o la imagen. Toca el nombre de un grupo para cambiarlo.";
+  $("cList").innerHTML = gs.map(g=>`<div class="ghead"><input class="gName" data-g="${esc(g.n)}" value="${esc(g.n)}" placeholder="Sin grupo" aria-label="Nombre del grupo"${cOrden?" disabled":""}></div><div class="tlist">${g.l.map(c=>{
+    const i=l.indexOf(c), pic=cuboPic(c), arriba=i>0&&(l[i-1].grupo||"")===g.n, abajo=i<l.length-1&&(l[i+1].grupo||"")===g.n;
+    return `<div class="trow${cOrden?" ordenando":""}${cMov===i?" mov":""}"${cOrden?"":` data-c="${i}" role="button" tabindex="0"`}>
+      <span class="im cu${pic?"":" vacia"}">${pic||"Sin<br>imagen"}</span>
+      <div class="tx"><div class="nm">${esc(c.nombre)}</div><div class="us">${usoTxt(usoCubo(c.id))}</div></div>
+      ${cOrden?`<div class="ord"><button class="up" data-i="${i}" aria-label="Subir" ${arriba?"":"disabled"}>▲</button><button class="dn" data-i="${i}" aria-label="Bajar" ${abajo?"":"disabled"}>▼</button></div>`:`<span class="chev" aria-hidden="true">›</span>`}
+    </div>`;
+  }).join("")}</div>`).join("");
   $("gruposDL").innerHTML = gs.filter(g=>g.n).map(g=>`<option value="${esc(g.n)}">`).join("");
+  cMov=null;
 }
+$("cOrden").onclick=()=>{ cOrden=!cOrden; renderCubos(); };
 $("cList").addEventListener("change", e=>{
-  const l=cubosLista().slice();
-  if(e.target.classList.contains("gName")){
-    const old=e.target.dataset.g, v=e.target.value.trim();
-    if(v===old) return;
-    if(v && l.some(c=>(c.grupo||"")===v)){ renderCubos(); return toast("Ese grupo ya existe"); }
-    return saveCubos(l.map(c=>(c.grupo||"")===old?{...c, grupo:v}:c), "Grupo actualizado");
-  }
-  if(!e.target.classList.contains("cName")) return;
-  const v=e.target.value.trim(), i=+e.target.dataset.i;
-  if(!v || l.some((c,j)=>j!==i&&c.grupo===l[i].grupo&&c.nombre===v)){ renderCubos(); if(v) toast("Ese cubo ya existe"); return; }
-  l[i]={...l[i], nombre:v}; saveCubos(l, "Cubo actualizado");
+  if(!e.target.classList.contains("gName")) return;
+  const l=cubosLista().slice(), old=e.target.dataset.g, v=norm(e.target.value);
+  if(v===old) return;
+  if(v && l.some(c=>(c.grupo||"")===v)){ renderCubos(); return toast("Ese grupo ya existe"); }
+  saveCubos(l.map(c=>(c.grupo||"")===old?{...c, grupo:v}:c), "Grupo actualizado");
 });
 $("cList").addEventListener("click", e=>{
-  const im=e.target.closest("[data-cimg]");
-  if(im){ abrirGaleria("c", cubosLista()[+im.dataset.cimg].id); return; }
   const mv=e.target.closest(".up,.dn");
   if(mv){
     const i=+mv.dataset.i, j=mv.classList.contains("up")?i-1:i+1, l=cubosLista().slice();
     if(j<0||j>=l.length||(l[i].grupo||"")!==(l[j].grupo||"")) return;
-    [l[i],l[j]]=[l[j],l[i]]; saveCubos(l); return;
+    [l[i],l[j]]=[l[j],l[i]]; cMov=j; saveCubos(l); return;
   }
-  if(!e.target.classList.contains("x")) return;
-  const l=cubosLista().slice(); l.splice(+e.target.dataset.i,1);
-  if(!l.length) return toast("Deja al menos un cubo");
-  saveCubos(l, "Cubo quitado");
+  const r=e.target.closest("[data-c]"); if(r) editarCubo(+r.dataset.c);
 });
+$("cList").addEventListener("keydown", e=>teclaFila(e,"[data-c]",el=>editarCubo(+el.dataset.c)));
+function colocarEnGrupo(l, item){ let pos=-1; l.forEach((c,k)=>{ if((c.grupo||"")===(item.grupo||"")) pos=k; }); if(pos<0) l.push(item); else l.splice(pos+1,0,item); }
+function editarCubo(i){
+  const l0=cubosLista(), c=l0[i]; if(!c) return;
+  const u=usoCubo(c.id), pic=cuboPic(c);
+  abrirHoja(`
+    <div class="hd"><div><div class="dt">Tipo de cubo</div><h2 style="margin:2px 0 0">Editar</h2></div><button class="close" id="dClose" aria-label="Cerrar">×</button></div>
+    <div class="tedit"><button class="tpic" id="ceImg" type="button">${pic?`<span class="im cu">${pic}</span>`:`<span class="im cu vacia">Sin imagen</span>`}<span>${pic?"✎ Cambiar imagen":"+ Poner imagen"}</span></button></div>
+    <div class="row">
+      <div><label for="ceGrupo">Grupo</label><input id="ceGrupo" list="gruposDL" value="${esc(c.grupo||"")}" placeholder="Sin grupo"></div>
+      <div><label for="ceName">Tamaño o nombre</label><input id="ceName" value="${esc(c.nombre)}" enterkeyhint="done"></div>
+    </div>
+    <div class="sub" style="margin-top:10px">${u.j?`Usado en ${u.j} jornada${u.j==1?"":"s"} · ${fmtCubos(u.c)} cubo${u.c==1?"":"s"} en total.`:"Aún no lo has usado en ninguna jornada."}</div>
+    <div class="actions"><button class="btn" id="ceOk">Guardar</button><button class="btn ghost" id="ceX">Cancelar</button></div>
+    <button class="link" id="ceDel" style="display:block;margin:18px auto 0;color:var(--pepper)">🗑 Quitar este cubo</button>`);
+  $("dClose").onclick = $("ceX").onclick = cerrarDia;
+  $("ceImg").onclick = ()=>{ cerrarDia(); abrirGaleria("c", c.id); };
+  ["ceGrupo","ceName"].forEach(id=>$(id).addEventListener("keydown", e=>{ if(e.key==="Enter"){ e.preventDefault(); $("ceOk").click(); } }));
+  $("ceOk").onclick = ()=>{
+    const g=norm($("ceGrupo").value), v=norm($("ceName").value);
+    if(!v) return toast("Pon el tamaño o el nombre del cubo");
+    if(l0.some((x,k)=>k!==i&&(x.grupo||"")===g&&x.nombre===v)) return toast("Ese cubo ya existe");
+    const l=l0.slice(), item={...c, grupo:g, nombre:v};
+    if((c.grupo||"")===g) l[i]=item; else { l.splice(i,1); colocarEnGrupo(l,item); }
+    cMov=l.indexOf(item); cerrarDia(); saveCubos(l, "Cubo actualizado");
+  };
+  armarBorrado($("ceDel"), "¿Seguro? Toca otra vez para quitarlo", u.j?"Las jornadas ya apuntadas conservan el nombre del cubo.":"", ()=>{
+    if(l0.length<=1) return toast("Deja al menos un cubo");
+    const l=l0.slice(); l.splice(i,1); cerrarDia(); saveCubos(l, "Cubo quitado");
+  });
+}
 $("cAdd").onclick=()=>{
-  const g=$("cGrupo").value.trim(), v=$("cNew").value.trim();
+  const g=norm($("cGrupo").value), v=norm($("cNew").value);
   if(!v) return toast("Pon el tamaño o el nombre del cubo");
   const l=cubosLista().slice();
   if(l.some(c=>(c.grupo||"")===g&&c.nombre===v)) return toast("Ese cubo ya existe");
   const nuevo={id:"cu-"+uid(), grupo:g, nombre:v, img:""};
-  let pos=-1; l.forEach((c,i)=>{ if((c.grupo||"")===g) pos=i; }); // detrás de los de su grupo
-  if(pos<0) l.push(nuevo); else l.splice(pos+1,0,nuevo);
-  $("cNew").value=""; saveCubos(l, "Cubo añadido");
+  colocarEnGrupo(l, nuevo); cMov=l.indexOf(nuevo);
+  $("cNew").value=""; saveCubos(l, "Cubo añadido · tócalo para ponerle imagen");
 };
 $("cNew").addEventListener("keydown", e=>{ if(e.key==="Enter") $("cAdd").click(); });
 
@@ -1277,7 +1571,9 @@ async function getDownloads(){ return shim; }
 function rr(ctx,x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
 async function dibujar(ws, we, min){
   try{ await document.fonts.ready; await Promise.all([document.fonts.load('700 60px Fraunces'),document.fonts.load('600 40px "DM Sans"'),document.fonts.load('400 40px "DM Sans"')]); }catch(e){}
-  const W=1080, rowH=118, top=300, H=top+7*rowH+330;
+  const lista=S.jornadas.filter(j=>j.fecha>=ws&&j.fecha<=we), cbT=sumCubos(lista);
+  const pago=S.pagos[ws], cobrado=pago&&pago.pagado ? Number(pago.importe)||0 : null;
+  const W=1080, rowH=124, top=300, cobH=cobrado!=null?150:0, H=top+7*rowH+330+cobH;
   const c=document.createElement("canvas"); c.width=W; c.height=H;
   const x=c.getContext("2d");
   x.fillStyle="#f6f1e7"; x.fillRect(0,0,W,H);
@@ -1289,20 +1585,31 @@ async function dibujar(ws, we, min){
   x.fillStyle="#fffdf8"; rr(x,50,top-30,W-100,7*rowH+40,28); x.fill();
   x.strokeStyle="#e6dfcf"; x.lineWidth=2; x.stroke();
   for(let i=0;i<7;i++){
-    const d=addDays(ws,i), l=byDay(d), m=sumMin(l), y=top+i*rowH+rowH/2+12;
+    const d=addDays(ws,i), l=byDay(d), m=sumMin(l), cb=sumCubos(l), y=top+i*rowH+rowH/2+12;
     if(i>0){ x.strokeStyle="#ece5d5"; x.beginPath(); x.moveTo(90,top+i*rowH); x.lineTo(W-90,top+i*rowH); x.stroke(); }
     x.textAlign="left";
     x.fillStyle="#2a2a22"; x.font='600 40px "DM Sans", sans-serif'; x.fillText(DIAS[i],100,y-14);
     x.fillStyle="#9a9482"; x.font='400 27px "DM Sans", sans-serif'; x.fillText(`${parse(d).getDate()} de ${MESES[parse(d).getMonth()]}`,100,y+26);
     x.textAlign="right";
-    if(m){ x.fillStyle="#56692b"; x.font='700 52px Fraunces, serif'; x.fillText(fmt(m),W-100,y); }
-    else { x.fillStyle="#bdb5a0"; x.font='400 34px "DM Sans", sans-serif'; x.fillText("Nada que hacer",W-100,y); }
+    if(m){
+      x.fillStyle="#56692b"; x.font='700 52px Fraunces, serif'; x.fillText(fmt(m),W-100,cb?y-6:y+4);
+      if(cb){ x.fillStyle="#9a9482"; x.font='500 27px "DM Sans", sans-serif'; x.fillText(`${fmtCubos(cb)} cubo${cb==1?"":"s"}`,W-100,y+32); }
+    } else if(i===6){ x.fillStyle="#c9962b"; x.font='600 34px "DM Sans", sans-serif'; x.fillText("💶 Día de cobro",W-100,y+4); }
+    else { x.fillStyle="#bdb5a0"; x.font='400 34px "DM Sans", sans-serif'; x.fillText("Nada que hacer",W-100,y+4); }
   }
   // total
   const ty=top+7*rowH+60;
   x.fillStyle="#2a2a22"; rr(x,50,ty,W-100,190,28); x.fill();
-  x.textAlign="left"; x.fillStyle="#cfc8b4"; x.font='600 34px "DM Sans", sans-serif'; x.fillText("TOTAL",100,ty+108);
+  x.textAlign="left"; x.fillStyle="#cfc8b4"; x.font='600 34px "DM Sans", sans-serif'; x.fillText("TOTAL",100,cbT?ty+88:ty+108);
+  if(cbT){ x.fillStyle="#9e978a"; x.font='500 30px "DM Sans", sans-serif'; x.fillText(`${fmtCubos(cbT)} cubo${cbT==1?"":"s"}`,100,ty+134); }
   x.textAlign="right"; x.fillStyle="#fff"; x.font='700 82px Fraunces, serif'; x.fillText(fmt(min),W-100,ty+122);
+  // cobro
+  if(cobrado!=null){
+    const cy=ty+190+24;
+    x.fillStyle="#fff4e0"; rr(x,50,cy,W-100,cobH-24,28); x.fill(); x.strokeStyle="#ecd9a8"; x.lineWidth=2; x.stroke();
+    x.textAlign="left"; x.fillStyle="#9a7a2c"; x.font='600 34px "DM Sans", sans-serif'; x.fillText("💶 COBRADO",100,cy+76);
+    x.textAlign="right"; x.fillStyle="#a8761a"; x.font='700 62px Fraunces, serif'; x.fillText(fmtEurC(cobrado),W-100,cy+84);
+  }
   return new Promise(res=>c.toBlob(res,"image/png"));
 }
 async function abrirImagen(ws, we, min){
@@ -1325,6 +1632,25 @@ async function mostrarImagen(blob, name){
 /* ---------- RESUMEN MENSUAL ---------- */
 const mesKey = (y,m) => `${y}-${pad(m+1)}`;
 const mesNombre = (y,m) => MESES[m][0].toUpperCase()+MESES[m].slice(1)+" "+y;
+const fmtEurC = n => Math.round(n*100)%100 ? fmtEur(n) : Math.round(n).toLocaleString("es-ES")+" €";
+function semanasHTML(D){
+  const hoy=today();
+  const rows=D.semanas.map(s=>{
+    const fut=s.a>hoy;
+    let cob;
+    if(s.e>D.last) cob=`<span class="wc mute">cobro en ${MESES[parse(s.e).getMonth()].slice(0,3)}.</span>`;
+    else if(s.cobro!=null) cob=`<span class="wc ok">${fmtEurC(s.cobro)} ✓</span>`;
+    else if(s.e<hoy && s.min) cob=`<span class="wc pend">Pendiente</span>`;
+    else if(s.e>=hoy && !fut) cob=`<span class="wc mute">sáb. ${parse(s.e).getDate()}</span>`;
+    else cob=`<span class="wc mute">–</span>`;
+    return `<div class="wk${s.min?"":" vacio"}" data-week="${s.w}" role="button" tabindex="0">
+      <div class="wl"><b>${rangoTxt(s.a,s.b,true)}</b><small>${s.min?`${s.dias} día${s.dias==1?"":"s"}${s.cubos?` · ${fmtCubos(s.cubos)} cubo${s.cubos==1?"":"s"}`:""}`:(fut?"Aún no ha llegado":"Sin registro")}</small></div>
+      <div class="wh">${s.min?fmt(s.min):"–"}</div>${cob}</div>`;
+  }).join("");
+  return `<div class="wks">${rows}</div>
+    <div class="wtot"><div class="wl"><b>Total</b><small>${D.dias} día${D.dias==1?"":"s"} · ${fmtCubos(D.cubos)} cubo${D.cubos==1?"":"s"}</small></div><div class="wh">${fmt(D.min)}</div><span class="wc">${fmtEurC(D.cobrado)}</span></div>
+    <p class="sub" style="margin:10px 2px 0">Cada cobro cuenta en el mes del sábado en que termina su semana.</p>`;
+}
 function datosMes(y,m){
   const first=ymd(new Date(y,m,1)), last=ymd(new Date(y,m+1,0));
   const list=S.jornadas.filter(j=>j.fecha>=first&&j.fecha<=last);
@@ -1332,7 +1658,7 @@ function datosMes(y,m){
   const semanas=[]; let w=mondayOf(first);
   while(w<=last){
     const e=addDays(w,6), a=w<first?first:w, b=e>last?last:e, l=list.filter(j=>j.fecha>=a&&j.fecha<=b);
-    semanas.push({w, rango:rangoTxt(a,b), min:sumMin(l), cobro: S.pagos[w]&&S.pagos[w].pagado&&e<=last ? Number(S.pagos[w].importe)||0 : null});
+    semanas.push({w, a, b, e, rango:rangoTxt(a,b), min:sumMin(l), dias:new Set(l.map(j=>j.fecha)).size, cubos:sumCubos(l), cobro: S.pagos[w]&&S.pagos[w].pagado&&e<=last ? Number(S.pagos[w].importe)||0 : null});
     w=addDays(w,7);
   }
   const tipos={}; list.forEach(j=>(j.gildas||[]).forEach(g=>{ tipos[g.tipo]=(tipos[g.tipo]||0)+(Number(g.cubos)||0); }));
@@ -1346,10 +1672,10 @@ function abrirResumenMes(y,m,auto){
       <button class="close" id="dClose" aria-label="Cerrar">×</button>
     </div>
     <div class="big">${fmt(D.min)}</div>
-    <div class="sm">${D.dias} días trabajados · ${fmtCubos(D.cubos)} cubos · ${fmtEur(D.cobrado)} cobrados</div>
-    <table><tr><th>Semana</th><th class="n">Horas</th><th class="n">Cobrado</th></tr>
-      ${D.semanas.map(x=>`<tr><td>${x.rango}</td><td class="n">${fmt(x.min)}</td><td class="n">${x.cobro!=null?fmtEur(x.cobro):"–"}</td></tr>`).join("")}
-    </table>
+    <div class="sm">horas trabajadas</div>
+    <div class="rstats"><div><b>${D.dias}</b><span>días</span></div><div><b>${fmtCubos(D.cubos)}</b><span>cubos</span></div><div class="eur"><b>${fmtEurC(D.cobrado)}</b><span>cobrado</span></div></div>
+    <h3>Por semanas</h3>
+    ${semanasHTML(D)}
     ${D.tipos.length?`<h3>Cubos por tipo</h3>${tiposBars(D.list)}`:""}
     <div class="actions">
       <button class="btn light" id="rImg">📸 Imagen</button>
@@ -1360,6 +1686,7 @@ function abrirResumenMes(y,m,auto){
   $("dClose").onclick=fin;
   $("dayOv").onclick=e=>{ if(e.target.id==="dayOv") fin(); };
   $("rMes").onclick=()=>{ fin(); mCur={y,m}; showView("mes"); };
+  $("daySheet").querySelectorAll("[data-week]").forEach(r=>r.onclick=()=>{ fin(); wStart=r.dataset.week; showView("semana"); });
   $("rImg").onclick=async()=>{ toast("Preparando imagen…"); mostrarImagen(await dibujarMes(y,m), `gildas-${mesKey(y,m)}.png`); };
 }
 async function dibujarMes(y,m){
@@ -1371,7 +1698,7 @@ async function dibujarMes(y,m){
   x.fillStyle="#56692b"; x.fillRect(0,0,W,230);
   x.fillStyle="#e3e9cf"; x.font='600 32px "DM Sans", sans-serif'; x.fillText("GILDEO · RESUMEN MENSUAL",70,92);
   x.fillStyle="#fff"; x.font='700 70px Fraunces, serif'; x.fillText(mesNombre(y,m),70,175);
-  const tiles=[[fmt(D.min),"Horas"],[String(D.dias),"Días trabajados"],[fmtCubos(D.cubos),"Cubos hechos"],[fmtEur(D.cobrado),"Cobrado"]];
+  const tiles=[[fmt(D.min),"Horas"],[String(D.dias),"Días trabajados"],[fmtCubos(D.cubos),"Cubos hechos"],[fmtEurC(D.cobrado),"Cobrado"]];
   tiles.forEach(([v,l],i)=>{
     const tx=50+(i%2)*500, ty=top+Math.floor(i/2)*230, dark=i===0;
     x.fillStyle=dark?"#56692b":"#fffdf8"; rr(x,tx,ty,480,200,26); x.fill();
@@ -1386,8 +1713,13 @@ async function dibujarMes(y,m){
     const yy=wy+90+i*rowH+56;
     x.strokeStyle="#ece5d5"; x.beginPath(); x.moveTo(90,yy-56); x.lineTo(W-90,yy-56); x.stroke();
     x.textAlign="left"; x.fillStyle="#2a2a22"; x.font='500 34px "DM Sans", sans-serif'; x.fillText(s.rango,90,yy);
-    x.textAlign="right"; x.fillStyle=s.min?"#56692b":"#bdb5a0"; x.font='700 38px Fraunces, serif'; x.fillText(fmt(s.min),W-330,yy);
-    x.fillStyle=s.cobro!=null?"#2a2a22":"#bdb5a0"; x.fillText(s.cobro!=null?fmtEur(s.cobro):"–",W-90,yy);
+    x.textAlign="right"; x.fillStyle=s.min?"#56692b":"#bdb5a0"; x.font='700 38px Fraunces, serif'; x.fillText(s.min?fmt(s.min):"–",W-330,yy);
+    const hoy=today();
+    if(s.cobro!=null){ x.fillStyle="#2a2a22"; x.fillText(fmtEurC(s.cobro),W-90,yy); }
+    else { x.font='500 28px "DM Sans", sans-serif';
+      if(s.e>D.last){ x.fillStyle="#9a9482"; x.fillText(`en ${MESES[parse(s.e).getMonth()].slice(0,3)}.`,W-90,yy); }
+      else if(s.e<hoy&&s.min){ x.fillStyle="#b8432f"; x.fillText("Pendiente",W-90,yy); }
+      else { x.fillStyle="#bdb5a0"; x.fillText("–",W-90,yy); } }
   });
   return new Promise(res=>c.toBlob(res,"image/png"));
 }
@@ -1427,7 +1759,7 @@ function renderAjustes(){
 $("mesesList").addEventListener("click", e=>{ const r=e.target.closest("[data-mes]"); if(!r) return; const [y,m]=r.dataset.mes.split("-").map(Number); abrirResumenMes(y,m-1); });
 
 async function hacerCopia(){
-  const data={app:"control-gildas", version:1, fecha:new Date().toISOString(), jornadas:S.jornadas, pagos:S.pagos, tipos:S.tipos, dibujos:S.dibujos, imagenes:S.imagenes, basesVistas:S.basesVistas, cubos:S.cubos, imgCubos:S.imgCubos, basesCubosVistas:S.basesCubosVistas};
+  const data={app:"control-gildas", version:1, fecha:new Date().toISOString(), jornadas:S.jornadas, pagos:S.pagos, tipos:S.tipos, tiposArch:S.tiposArch, dibujos:S.dibujos, imagenes:S.imagenes, basesVistas:S.basesVistas, cubos:S.cubos, imgCubos:S.imgCubos, basesCubosVistas:S.basesCubosVistas};
   const txt=JSON.stringify(data,null,1), name=`gildas-copia-${today()}.json`;
   const d=await getDownloads();
   if(d){
